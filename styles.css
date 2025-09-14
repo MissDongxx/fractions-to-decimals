@@ -23,17 +23,118 @@ body {
 .header {
     text-align: center;
     margin-bottom: 30px;
+    position: relative;
+    margin-top: 50px;
 }
 
 .header h1 {
     font-size: 2.5rem;
     color: #111827;
-    margin-bottom: 10px;
+    
 }
 
 .header p {
     font-size: 1.1rem;
     color: #6b7280;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+/* 语言选择器样式 */
+.language-selector {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.language-select {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 140px;
+}
+
+.language-select:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.language-select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.language-select option {
+    padding: 8px;
+}
+
+/* 教学内容区域样式 */
+main {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+main section {
+    background: white;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+main section h2 {
+    color: #111827;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 10px;
+}
+
+main section p {
+    color: #374151;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+main section ul, main section ol {
+    color: #374151;
+    line-height: 1.6;
+    margin-left: 20px;
+}
+
+main section li {
+    margin-bottom: 8px;
+}
+
+main section dl dt {
+    font-weight: bold;
+    color: #111827;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+main section dl dd {
+    color: #374151;
+    margin-left: 20px;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* 页脚样式 */
+footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    color: #6b7280;
+    border-top: 1px solid #e5e7eb;
 }
 
 /* 控制面板样式 */
@@ -376,4 +477,115 @@ body {
     .remainder-digit {
         min-width: 25px;
     }
+}
+
+/* =====教学性内容区====*/
+
+/* ===== 基础样式 ===== */
+body {
+    font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+    line-height: 1.6;
+    background: #f9f9fb;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 12px;
+}
+
+p {
+    margin: 8px 0 16px;
+}
+
+ul, ol {
+    padding-left: 20px;
+    margin: 8px 0 16px;
+}
+
+a {
+    color: #0073e6;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* ===== 教学性内容区 ===== */
+main {
+    margin-top: 40px;
+}
+
+section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+section h2 {
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+    border-left: 4px solid #0073e6;
+    padding-left: 12px;
+    color: #0073e6;
+}
+
+section ul li, 
+section ol li {
+    margin: 6px 0;
+}
+
+/* ===== FAQ 样式 ===== */
+dl {
+    margin: 0;
+}
+dt {
+    font-weight: bold;
+    margin-top: 12px;
+    color: #2c3e50;
+}
+dd {
+    margin: 6px 0 12px 16px;
+    color: #555;
+    background: #f3f7fb;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border-left: 3px solid #0073e6;
+}
+
+/* ===== 延伸阅读 ===== */
+section ul li a {
+    display: inline-block;
+    padding: 6px 10px;
+    background: #eef6ff;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+}
+section ul li a:hover {
+    background: #d6ebff;
+}
+
+/* ===== Footer ===== */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: #666;
 }

@@ -3,34 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>交互式长除法演示工具</title>
+    <title>交互式长除法演示工具 - 在线长除法计算与学习</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- 网站描述 -->
+    <meta name="description" content="免费在线交互式长除法演示工具，帮助学生和老师通过动画一步步理解长除法的计算过程，支持整数与小数除法。">
+
+    <!-- 关键词（现代搜索引擎影响较小，但仍可辅助） -->
+    <meta name="keywords" content="长除法, 除法演示, 除法计算器, 数学学习工具, 小学数学, 在线长除法, 除法动画, 数学教学, 算术练习">
+
+    <!-- Open Graph（社交分享优化） -->
+    <meta property="og:title" content="交互式长除法演示工具 - 在线长除法计算与学习">
+    <meta property="og:description" content="通过交互动画学习长除法，逐步演示每个步骤，适合学生和教师使用。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/">
+    <!--<meta property="og:image" content="https://yourdomain.com/long-division-preview.png">-->
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="交互式长除法演示工具">
+    <meta name="twitter:description" content="在线长除法演示工具，帮助学生通过动画逐步掌握除法计算方法。">
+    <meta name="twitter:image" content="https://yourdomain.com/long-division-preview.png">
+
+    <link rel="canonical" href="https://yourdomain.com/">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <h1>交互式长除法演示工具</h1>
-            <p>通过动画学习长除法的每一个步骤</p>
+            <h1 data-i18n="title">交互式长除法演示工具</h1>
+            <p data-i18n="subtitle">通过动画学习长除法的每一个步骤</p>
         </header>
 
         <div class="controls">
             <div class="input-group">
-                <label for="dividend">被除数:</label>
-                <input type="text" id="dividend" placeholder="例如: 864" maxlength="10">
+                <label for="dividend" data-i18n="dividend">被除数:</label>
+                <input type="text" id="dividend" data-i18n="dividendPlaceholder" placeholder="例如: 864" maxlength="10">
             </div>
             <div class="input-group">
-                <label for="divisor">除数:</label>
-                <input type="text" id="divisor" placeholder="例如: 12" maxlength="10">
+                <label for="divisor" data-i18n="divisor">除数:</label>
+                <input type="text" id="divisor" data-i18n="divisorPlaceholder" placeholder="例如: 12" maxlength="10">
             </div>
             <div class="input-group">
-                <label for="decimals">小数位数:</label>
-                <input type="number" id="decimals" value="2" min="0" max="10">
+                <label for="decimals" data-i18n="decimals">小数位数:</label>
+                <input type="number" id="decimals" data-i18n="decimalsPlaceholder" value="2" min="0" max="12">
             </div>
             <div class="button-group">
-                <button id="generateBtn" class="btn btn-primary">生成</button>
-                <button id="nextBtn" class="btn btn-secondary" disabled>下一步</button>
-                <button id="prevBtn" class="btn btn-secondary" disabled>上一步</button>
-                <button id="restartBtn" class="btn btn-secondary" disabled>重新开始</button>
+                <button id="generateBtn" class="btn btn-primary" data-i18n="generate">生成</button>
+                <button id="nextBtn" class="btn btn-secondary" data-i18n="nextStep" disabled>下一步</button>
+                <button id="prevBtn" class="btn btn-secondary" data-i18n="prevStep" disabled>上一步</button>
+                <button id="restartBtn" class="btn btn-secondary" data-i18n="restart" disabled>重新开始</button>
             </div>
         </div>
 
@@ -42,7 +63,70 @@
             </div>
         </div>
     </div>
+    
+    <!-- 教学性内容区 -->
+    <main>
+        <section>
+            <h2 data-i18n="whatIsLongDivision">什么是长除法？</h2>
+            <p data-i18n="longDivisionDesc1">长除法是一种逐步进行的除法计算方法，通常用于大数或小数的运算。它通过"商、余数、减法"的反复操作，让学生逐步理解除法的逻辑，而不是单纯背诵口诀。</p>
+            <p data-i18n="longDivisionDesc2">在小学数学学习中，长除法是进阶的重要环节，为分数运算、小数运算以及代数打下基础。</p>
+        </section>
 
+        <section>
+            <h2 data-i18n="toolFeatures">工具特色</h2>
+            <ul>
+                <li data-i18n="feature1">逐步演示长除法的完整计算过程</li>
+                <li data-i18n="feature2">支持整数与小数除法</li>
+                <li data-i18n="feature3">交互式操作，可前进或回退步骤</li>
+                <li data-i18n="feature4">适合课堂教学、家庭辅导、自主学习</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 data-i18n="howToUse">使用方法</h2>
+            <ol>
+                <li data-i18n="step1">输入 <strong>被除数</strong> 与 <strong>除数</strong></li>
+                <li data-i18n="step2">根据需要设置 <strong>小数位数</strong></li>
+                <li data-i18n="step3">点击 <strong>生成</strong>，工具会开始演示</li>
+                <li data-i18n="step4">使用 <em>下一步</em> 或 <em>上一步</em> 按钮查看具体过程</li>
+                <li data-i18n="step5">点击 <em>重新开始</em> 可清空数据并重新操作</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2 data-i18n="detailedSteps">长除法的计算步骤详解</h2>
+            <p data-i18n="stepsIntro">以下是长除法的标准步骤：</p>
+            <ol>
+                <li data-i18n="detailStep1">确定被除数的前几位是否大于除数，找到第一个可以整除的位置。</li>
+                <li data-i18n="detailStep2">写出商的第一位。</li>
+                <li data-i18n="detailStep3">用商乘以除数，得到部分积。</li>
+                <li data-i18n="detailStep4">将部分积与被除数的对应部分相减，得到余数。</li>
+                <li data-i18n="detailStep5">将余数与被除数的下一位"放下来"，组成新的被除数。</li>
+                <li data-i18n="detailStep6">重复以上步骤，直到被除数全部用完，或达到所需小数位。</li>
+            </ol>
+            <p data-i18n="example">例如：864 ÷ 12 → 首先 86 ÷ 12 = 7 …… 余 2，然后将 4 放下来，继续计算。</p>
+        </section>
+
+        <section>
+            <h2 data-i18n="faq">常见问题 (FAQ)</h2>
+            <dl>
+                <dt data-i18n="faqQ1">长除法和短除法有什么区别？</dt>
+                <dd data-i18n="faqA1">短除法适合小数除以个位数的简单计算，长除法适合大数或复杂小数的计算，步骤更详细。</dd>
+
+                <dt data-i18n="faqQ2">小学生学习长除法时常见困难是什么？</dt>
+                <dd data-i18n="faqA2">常见难点包括"确定商的位数"和"余数与下一位数的结合"。通过动画演示可以帮助学生更直观地理解。</dd>
+
+                <dt data-i18n="faqQ3">这个工具适合哪些人？</dt>
+                <dd data-i18n="faqA3">适合小学生、中学生、教师、家长，或任何想要复习和掌握长除法的人。</dd>
+            </dl>
+        </section>
+    </main>
+
+    <footer>
+        <p data-i18n="copyright">© 2025 交互式长除法演示工具 | 数学学习与教学辅助平台</p>
+    </footer>
+    
+    <script src="languages.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
