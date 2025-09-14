@@ -488,8 +488,8 @@ class LanguageManager {
             }
         }
 
-        // 默认返回中文
-        return 'zh-CN';
+        // 默认返回英文
+        return 'en';
     }
 
     init() {
