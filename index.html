@@ -140,5 +140,19 @@
     
     <script src="languages.js"></script>
     <script src="script.js"></script>
+    
+    <!-- Vercel Analytics - 异步加载优化 -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+        
+        // 延迟异步加载 Analytics，避免阻塞页面加载
+        setTimeout(() => {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.vercel-insights.com/v1/script.js'; // 使用生产版本
+            script.async = true;
+            script.onerror = () => console.warn('Vercel Analytics failed to load');
+            document.head.appendChild(script);
+        }, 1500); // 1.5秒后加载，确保页面主要内容已加载完成
+    </script>
 </body>
 </html>
