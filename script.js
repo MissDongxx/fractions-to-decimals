@@ -8,6 +8,7 @@ class LongDivisionDemo {
         
         this.initializeElements();
         this.bindEvents();
+        this.updateExplanation();
     }
     
     initializeElements() {
@@ -21,6 +22,8 @@ class LongDivisionDemo {
         this.errorMessage = document.getElementById('errorMessage');
         this.stage = document.getElementById('stage');
         this.longDivision = document.getElementById('longDivision');
+        this.explanationPanel = document.getElementById('explanationPanel');
+        this.explanationContent = document.getElementById('explanationContent');
     }
     
     bindEvents() {
@@ -37,15 +40,48 @@ class LongDivisionDemo {
     
     validateNumberInput(event, maxLength) {
         let value = event.target.value;
-        // 允许负号在开头
-        value = value.replace(/[^-0-9]/g, '');
+        // 允许数字、小数点、负号
+        value = value.replace(/[^-0-9.]/g, '');
+        
+        // 确保负号只在开头
         if (value.indexOf('-') > 0) {
             value = value.replace(/-/g, '');
         }
+        
+        // 确保只有一个小数点
+        const parts = value.split('.');
+        if (parts.length > 2) {
+            value = parts[0] + '.' + parts.slice(1).join('');
+        }
+        
+        // 限制总长度
         if (value.length > maxLength + (value.startsWith('-') ? 1 : 0)) {
             value = value.substring(0, maxLength + (value.startsWith('-') ? 1 : 0));
         }
+        
         event.target.value = value;
+    }
+    
+    // 标准化输入格式
+    normalizeInput(input) {
+        let value = input.trim();
+        
+        // .5 -> 0.5
+        if (value.startsWith('.') && value.length > 1) {
+            value = '0' + value;
+        }
+        
+        // -.5 -> -0.5
+        if (value.startsWith('-.')) {
+            value = '-0' + value.slice(1);
+        }
+        
+        // 12. -> 12
+        if (value.endsWith('.') && value !== '.') {
+            value = value.slice(0, -1);
+        }
+        
+        return value;
     }
     
     validateDecimalInput(event) {
@@ -81,8 +117,12 @@ class LongDivisionDemo {
             return;
         }
         
-        const dividend = parseInt(dividendValue);
-        const divisor = parseInt(divisorValue);
+        // 标准化输入
+        const normalizedDividend = this.normalizeInput(dividendValue);
+        const normalizedDivisor = this.normalizeInput(divisorValue);
+        
+        const dividend = parseFloat(normalizedDividend);
+        const divisor = parseFloat(normalizedDivisor);
         
         if (isNaN(dividend) || isNaN(divisor)) {
             this.showError('请输入有效的数字');
@@ -100,7 +140,7 @@ class LongDivisionDemo {
         this.decimals = decimalsValue;
         
         // 计算步骤
-        this.steps = this.computeDivisionSteps();
+        this.steps = this.computeDecimalDivisionSteps();
         this.currentStep = 0;
         
         // 生成布局
@@ -108,53 +148,120 @@ class LongDivisionDemo {
         
         // 更新按钮状态
         this.updateButtonStates();
+        
+        // 更新说明面板
+        this.updateExplanation();
     }
     
-    computeDivisionSteps() {
+    computeDecimalDivisionSteps() {
         const steps = [];
+        
+        // 获取绝对值
         const dividend = Math.abs(this.dividend);
         const divisor = Math.abs(this.divisor);
+        
+        // 将小数转换为整数进行计算，但保持原始显示格式
         const dividendStr = dividend.toString();
+        const divisorStr = divisor.toString();
+        
+        // 计算需要移动的小数位数
+        const dividendDecimals = (dividendStr.split('.')[1] || '').length;
+        const divisorDecimals = (divisorStr.split('.')[1] || '').length;
+        
+        // 将除数转换为整数
+        const intDivisor = Math.round(divisor * Math.pow(10, divisorDecimals));
+        
+        // 构建被除数数字数组（包含小数点信息）
+        const dividendDigits = [];
+        let decimalPointIndex = -1;
+        
+        for (let i = 0; i < dividendStr.length; i++) {
+            const char = dividendStr[i];
+            if (char === '.') {
+                decimalPointIndex = dividendDigits.length;
+            } else {
+                dividendDigits.push(parseInt(char));
+            }
+        }
+        
+        // 如果除数有小数位，需要在被除数后补零
+        if (divisorDecimals > dividendDecimals) {
+            const zerosToAdd = divisorDecimals - dividendDecimals;
+            for (let i = 0; i < zerosToAdd; i++) {
+                dividendDigits.push(0);
+            }
+            if (decimalPointIndex === -1) {
+                decimalPointIndex = dividendDigits.length - zerosToAdd;
+            }
+        }
+        
+        // 计算商中小数点的位置
+        let quotientDecimalPos = decimalPointIndex;
+        if (divisorDecimals > 0) {
+            quotientDecimalPos = decimalPointIndex - divisorDecimals;
+        }
+        
+        // 如果被除数是整数（没有小数点），需要添加小数点和至少一个0
+        let extendedDividend = dividendStr;
+        if (decimalPointIndex === -1) {
+            quotientDecimalPos = dividendDigits.length;
+            decimalPointIndex = dividendDigits.length;
+            // 为整数被除数添加至少一个小数位0，以便进行小数除法
+            dividendDigits.push(0);
+            extendedDividend = dividendStr + '.0';
+        }
         
         let workingNumber = 0;
-        let decimalStarted = false;
-        let decimalCount = 0;
-        let extendedDividend = dividendStr;
+        let quotientDecimalCount = 0; // 商的小数位数计数
+        let addedDecimalPoint = false;
         
-        for (let i = 0; i < dividendStr.length || (decimalCount < this.decimals && workingNumber > 0); i++) {
+        for (let i = 0; i < dividendDigits.length || (quotientDecimalCount <= this.decimals && workingNumber > 0); i++) {
             let digit;
             let isDecimalDigit = false;
             let previousRemainder = workingNumber;
             
-            if (i < dividendStr.length) {
-                digit = parseInt(dividendStr[i]);
+            if (i < dividendDigits.length) {
+                digit = dividendDigits[i];
+                // 检查当前位置是否是小数位
+                isDecimalDigit = i >= decimalPointIndex;
             } else {
+                // 添加小数位
                 digit = 0;
                 isDecimalDigit = true;
-                if (!decimalStarted) {
+                if (!addedDecimalPoint && !extendedDividend.includes('.')) {
                     extendedDividend += '.';
-                    decimalStarted = true;
+                    addedDecimalPoint = true;
                 }
                 extendedDividend += '0';
-                decimalCount++;
             }
             
             workingNumber = workingNumber * 10 + digit;
             
-            const quotientDigit = Math.floor(workingNumber / divisor);
-            const product = quotientDigit * divisor;
+            const quotientDigit = Math.floor(workingNumber / intDivisor);
+            const product = quotientDigit * intDivisor;
             const remainder = workingNumber - product;
             
-            // 计算精确位置
+            // 计算乘积数字的位置
             const productStr = product.toString();
             const productDigitPositions = [];
             
+            // 乘积的个位数应该与当前处理的被除数位对齐
+            // i 是当前处理的被除数数字的索引位置
+            const productStartPos = i - (productStr.length - 1);
             for (let j = 0; j < productStr.length; j++) {
-                productDigitPositions.push(i - (productStr.length - 1) + j);
+                productDigitPositions.push(productStartPos + j);
             }
             
-            const remainderPosition = i;
-            const bringDownPosition = i;
+
+            
+            // 判断是否需要在商中显示小数点
+            // 当处理到小数点位置时，在下一个数字前显示小数点
+            const shouldShowDecimalInQuotient = (i === quotientDecimalPos);
+            
+            // 如果当前步骤产生的商位在小数点后，增加商的小数位计数
+            if (i >= quotientDecimalPos) {
+                quotientDecimalCount++;
+            }
             
             steps.push({
                 stepIndex: steps.length,
@@ -166,17 +273,19 @@ class LongDivisionDemo {
                 product: product,
                 remainder: remainder,
                 isDecimal: isDecimalDigit,
+                shouldShowDecimalInQuotient: shouldShowDecimalInQuotient,
                 extendedDividend: extendedDividend,
                 quotientAlignPos: i,
                 productAlignPos: i,
                 productDigitPositions: productDigitPositions,
-                remainderPosition: remainderPosition,
-                bringDownPosition: bringDownPosition
+                remainderPosition: i,
+                bringDownPosition: i
             });
             
             workingNumber = remainder;
             
-            if (remainder === 0 && isDecimalDigit) {
+            // 只有在达到所需的小数位数后，且余数为0时才退出
+            if (remainder === 0 && isDecimalDigit && quotientDecimalCount > this.decimals) {
                 break;
             }
         }
@@ -185,24 +294,23 @@ class LongDivisionDemo {
     }
     
     generateLayout() {
-        const isNegative = this.dividend < 0;
         const dividendStr = Math.abs(this.dividend).toString();
         const divisorStr = Math.abs(this.divisor).toString();
         
+        // 生成被除数的HTML，支持小数点显示
+        const dividendHTML = this.generateDividendHTML(dividendStr);
+        
         this.longDivision.innerHTML = `
             <div class="divisor-section">
-                <div class="divisor-number ${this.divisor < 0 ? 'negative' : ''}">${divisorStr}</div>
+                <div class="divisor-number">${divisorStr}</div>
                 <div class="division-symbol"></div>
             </div>
             <div class="calculation-area">
                 <div class="quotient-row" id="quotientRow">
-                    ${this.dividend < 0 !== this.divisor < 0 ? '<span class="quotient-digit negative">-</span>' : ''}
+                    <!-- 商将在计算过程中动态添加 -->
                 </div>
                 <div class="dividend-row" id="dividendRow">
-                    ${isNegative ? '<span class="dividend-digit negative">-</span>' : ''}
-                    ${dividendStr.split('').map((digit, index) => 
-                        `<span class="dividend-digit" data-index="${index}">${digit}</span>`
-                    ).join('')}
+                    ${dividendHTML}
                 </div>
                 <div class="steps-area" id="stepsArea">
                 </div>
@@ -213,24 +321,38 @@ class LongDivisionDemo {
         this.currentStep = -1;
     }
     
+    generateDividendHTML(dividendStr) {
+        let html = '';
+        let index = 0;
+        
+        for (let i = 0; i < dividendStr.length; i++) {
+            const char = dividendStr[i];
+            if (char === '.') {
+                html += '<span class="dividend-digit decimal-point">.</span>';
+            } else {
+                html += `<span class="dividend-digit" data-index="${index}">${char}</span>`;
+                index++;
+            }
+        }
+        
+        return html;
+    }
+    
     displayStep(stepIndex) {
         if (stepIndex < -1 || stepIndex >= this.steps.length) return;
         
         // 如果stepIndex为-1，表示初始状态，不显示任何计算步骤
         if (stepIndex === -1) {
             document.getElementById('stepsArea').innerHTML = '';
-            // 清除商的显示
-            document.getElementById('quotientRow').innerHTML = '';
-            // 恢复被除数的原始显示（不带小数点和补零）
+            // 清除商的显示（演示过程中不显示负号）
+            const quotientRow = document.getElementById('quotientRow');
+            quotientRow.innerHTML = '';
+            
+            // 恢复被除数的原始显示（只显示绝对值）
             const dividendRow = document.getElementById('dividendRow');
-            const isNegative = this.dividend < 0;
             const dividendStr = Math.abs(this.dividend).toString();
-            dividendRow.innerHTML = `
-                ${isNegative ? '<span class="dividend-digit negative">-</span>' : ''}
-                ${dividendStr.split('').map((digit, index) => 
-                    `<span class="dividend-digit" data-index="${index}">${digit}</span>`
-                ).join('')}
-            `;
+            const dividendHTML = this.generateDividendHTML(dividendStr);
+            dividendRow.innerHTML = dividendHTML;
             return;
         }
         
@@ -243,25 +365,38 @@ class LongDivisionDemo {
     updateDividendDisplay(stepIndex) {
         const dividendRow = document.getElementById('dividendRow');
         const step = this.steps[stepIndex];
-        const isNegative = this.dividend < 0;
         
-        const extendedDividendStr = step.extendedDividend;
+        // 获取原始被除数字符串（只使用绝对值）
+        const originalDividendStr = Math.abs(this.dividend).toString();
         
-        let dividendHTML = isNegative ? '<span class="dividend-digit negative">-</span>' : '';
+        // 判断是否需要显示小数部分
+        // 只有当前步骤是小数步骤时，才显示扩展的被除数
+        const shouldShowDecimal = stepIndex >= 0 && this.steps[stepIndex].isDecimal;
         
-        const parts = extendedDividendStr.split('.');
-        const integerPart = parts[0];
-        const decimalPart = parts[1] || '';
+        let dividendHTML = '';
         
-        integerPart.split('').forEach((digit, index) => {
-            dividendHTML += `<span class="dividend-digit" data-index="${index}">${digit}</span>`;
-        });
-        
-        if (decimalPart) {
-            dividendHTML += '<span class="dividend-digit decimal-point">.</span>';
-            decimalPart.split('').forEach((digit, index) => {
-                const actualIndex = integerPart.length + index;
-                dividendHTML += `<span class="dividend-digit decimal-digit" data-index="${actualIndex}">${digit}</span>`;
+        if (shouldShowDecimal) {
+            // 显示扩展的被除数（包含小数部分）
+            const extendedDividendStr = step.extendedDividend;
+            let digitIndex = 0;
+            
+            for (let i = 0; i < extendedDividendStr.length; i++) {
+                const char = extendedDividendStr[i];
+                if (char === '.') {
+                    dividendHTML += '<span class="dividend-digit decimal-point">.</span>';
+                } else {
+                    dividendHTML += `<span class="dividend-digit" data-index="${digitIndex}">${char}</span>`;
+                    digitIndex++;
+                }
+            }
+        } else {
+            // 只显示原始被除数（整数部分）
+            originalDividendStr.split('').forEach((digit, index) => {
+                if (digit === '.') {
+                    dividendHTML += '<span class="dividend-digit decimal-point">.</span>';
+                } else {
+                    dividendHTML += `<span class="dividend-digit" data-index="${index}">${digit}</span>`;
+                }
             });
         }
         
@@ -274,40 +409,24 @@ class LongDivisionDemo {
         
         let quotientHTML = '';
         
-        if (this.dividend < 0 !== this.divisor < 0) {
-            quotientHTML += '<span class="quotient-digit negative">-</span>';
-        }
+        // 演示过程中不显示负号，只显示绝对值的计算结果
+        // 负号将在最终结果中单独处理
         
-        const dividendStr = Math.abs(this.dividend).toString();
+        // 按顺序显示商的每一位（不进行四舍五入）
         let decimalAdded = false;
         
-        for (let pos = 0; pos < dividendStr.length; pos++) {
-            let digitContent = '';
+        for (let i = 0; i <= stepIndex; i++) {
+            const step = this.steps[i];
             
-            for (let i = 0; i <= stepIndex; i++) {
-                const step = this.steps[i];
-                if (step.quotientAlignPos === pos) {
-                    if (step.isDecimal && !decimalAdded) {
-                        digitContent = '.' + step.quotientDigit;
-                        decimalAdded = true;
-                    } else {
-                        digitContent = step.quotientDigit.toString();
-                    }
-                    break;
-                }
+            // 检查是否需要在此位置添加小数点
+            if (step.shouldShowDecimalInQuotient && !decimalAdded) {
+                quotientHTML += '<span class="quotient-digit decimal-point">.</span>';
+                decimalAdded = true;
             }
             
-            quotientHTML += `<span class="quotient-digit" style="min-width: ${digitWidth}px; text-align: center; display: inline-block;">${digitContent}</span>`;
-        }
-        
-        if (stepIndex >= 0 && this.steps[stepIndex].isDecimal && !decimalAdded) {
-            quotientHTML += '<span class="quotient-digit">.</span>';
-            for (let i = 0; i <= stepIndex; i++) {
-                const step = this.steps[i];
-                if (step.isDecimal) {
-                    quotientHTML += `<span class="quotient-digit">${step.quotientDigit}</span>`;
-                }
-            }
+            // 添加商的数字
+            const digitClass = step.isDecimal ? 'quotient-digit decimal-digit' : 'quotient-digit';
+            quotientHTML += `<span class="${digitClass}" style="min-width: ${digitWidth}px; text-align: center; display: inline-block;">${step.quotientDigit}</span>`;
         }
         
         quotientRow.innerHTML = quotientHTML;
@@ -413,11 +532,19 @@ class LongDivisionDemo {
     
     calculateDigitPosition(position) {
         const digitWidth = 30;
-        const originalDividendLength = Math.abs(this.dividend).toString().length;
         
-        if (position >= originalDividendLength) {
-            return (position + 1) * digitWidth;
+        // 直接查找对应 data-index 的元素位置
+        const digitElement = document.querySelector(`.dividend-digit[data-index="${position}"]`);
+        if (digitElement) {
+            // 计算该元素在被除数行中的位置
+            const dividendRow = document.getElementById('dividendRow');
+            const allElements = Array.from(dividendRow.children);
+            const elementIndex = allElements.indexOf(digitElement);
+            
+            return elementIndex * digitWidth;
         }
+        
+        // 如果找不到元素，使用备用逻辑
         return position * digitWidth;
     }
     
@@ -442,6 +569,12 @@ class LongDivisionDemo {
             this.currentStep++;
             this.displayStep(this.currentStep);
             this.updateButtonStates();
+            this.updateExplanation();
+        } else if (this.currentStep === this.steps.length - 1) {
+            // 从最后一个计算步骤进入最终结果步骤
+            this.currentStep++;
+            this.updateButtonStates();
+            this.updateExplanation();
         }
     }
     
@@ -450,6 +583,7 @@ class LongDivisionDemo {
             this.currentStep--;
             this.displayStep(this.currentStep);
             this.updateButtonStates();
+            this.updateExplanation();
         }
     }
     
@@ -457,17 +591,289 @@ class LongDivisionDemo {
         this.currentStep = -1;
         this.displayStep(-1);
         this.updateButtonStates();
+        this.updateExplanation();
     }
     
     updateButtonStates() {
         const hasSteps = this.steps.length > 0;
         
-        this.nextBtn.disabled = !hasSteps || this.currentStep >= this.steps.length - 1;
+        // 更新按钮文本和状态
+        if (hasSteps && this.currentStep === this.steps.length - 1) {
+            // 最后一个计算步骤，按钮显示"最终结果"
+            this.nextBtn.textContent = this.getTranslation('finalResult');
+            this.nextBtn.disabled = false;
+        } else if (hasSteps && this.currentStep === this.steps.length) {
+            // 最终结果步骤，按钮变灰不可点击
+            this.nextBtn.textContent = this.getTranslation('finalResult');
+            this.nextBtn.disabled = true;
+        } else {
+            // 正常步骤，显示"下一步"
+            this.nextBtn.textContent = this.getTranslation('nextStep');
+            // 只有当没有步骤或者已经到达最后一个计算步骤时才禁用
+            // currentStep从-1开始，到steps.length-2都应该可以点击
+            this.nextBtn.disabled = !hasSteps || this.currentStep >= this.steps.length - 1;
+        }
+        
         this.prevBtn.disabled = !hasSteps || this.currentStep <= 0;
         this.restartBtn.disabled = !hasSteps;
+    }
+    
+    updateExplanation() {
+        if (!this.explanationContent) return;
+        
+        let explanationText = '';
+        
+        if (this.steps.length === 0) {
+            // 没有开始计算
+            if (this.dividend && this.divisor) {
+                explanationText = `<h3>${this.getTranslation('explanationTitle')}</h3><p>${this.getTranslation('prepareCalculation')} ${this.dividend} ÷ ${this.divisor}${this.getPunctuation('comma')} ${this.getTranslation('clickNextStep')}${this.getPunctuation('quote')}${this.getTranslation('generate')}${this.getPunctuation('quote')}${this.getTranslation('startDemo')}${this.getPunctuation('period')}</p>`;
+            } else {
+                explanationText = `<h3>${this.getTranslation('explanationTitle')}</h3><p>${this.getTranslation('inputDividendDivisor')} ${this.getPunctuation('quote')}${this.getTranslation('generate')}${this.getPunctuation('quote')} ${this.getTranslation('startLongDivision')}${this.getPunctuation('period')}</p>`;
+            }
+        } else if (this.currentStep === -1) {
+            // 初始状态 - 显示布局但未开始计算
+            const hasNegative = this.dividend < 0 || this.divisor < 0;
+            const absDividend = Math.abs(this.dividend);
+            const absDivisor = Math.abs(this.divisor);
+            
+            if (hasNegative) {
+                explanationText = `<h3>${this.getTranslation('explanationTitle')}</h3><p>${this.getTranslation('beforeCalculation')}</p>`;
+            } else {
+                explanationText = `<h3>${this.getTranslation('explanationTitle')}</h3><p>${this.getTranslation('prepareCalculation')} ${absDividend} ÷ ${absDivisor}${this.getPunctuation('period')} ${this.getTranslation('clickNextStep')} ${this.getPunctuation('quote')}${this.getTranslation('nextStep')}${this.getPunctuation('quote')} ${this.getTranslation('startLongDivision')}${this.getPunctuation('period')}</p>`;
+            }
+        } else if (this.currentStep >= 0 && this.currentStep < this.steps.length) {
+            // 根据当前演示步骤生成对应说明
+            explanationText = this.generateStepExplanation(this.currentStep);
+        } else if (this.currentStep === this.steps.length) {
+            // 最终结果步骤
+            explanationText = this.generateFinalResultExplanation();
+        }
+        
+        this.explanationContent.innerHTML = explanationText;
+    }
+    
+    generateStepExplanation(stepIndex) {
+        const step = this.steps[stepIndex];
+        const stepNum = stepIndex + 1;
+        const absDivisor = Math.abs(this.divisor);
+        const absDividend = Math.abs(this.dividend);
+        const currentLang = getCurrentLanguage();
+        const period = this.getPunctuation('period');
+        const comma = this.getPunctuation('comma');
+        
+        // 分析当前步骤在演示中显示的内容
+        let explanation = `<h3>${this.getTranslation('stepInfo')} ${stepNum}</h3>`;
+        
+        if (stepIndex === 0) {
+            // 第一步：特殊处理商的第一位为0的情况
+            if (step.quotientDigit === 0) {
+                // 当商的第一位为0时，只简短说明，因为演示中没有显示乘积和减法
+                explanation += `<p>${this.getTranslation('firstDigitSmaller')} ${step.workingNumber} ${this.getTranslation('smallerThanDivisor')} ${absDivisor}${this.getTranslation('cannotDivide')}${period} ${this.getTranslation('quotientFirstDigit')} 0${period}</p>`;
+                return explanation;
+            } else {
+                // 正常的第一步计算
+                explanation += `<p>${this.getTranslation('firstDigitSmaller')} ${step.workingNumber} >= ${absDivisor}${period}</p>`;
+                explanation += `<p>${this.getTranslation('calculate')} ${step.workingNumber} ÷ ${absDivisor} ${this.getTranslation('equals')} ${step.quotientDigit}${this.getTranslation('writeInQuotient')} ${step.quotientDigit}${period}</p>`;
+                
+                // 添加乘积和减法说明
+                explanation += `<p>${this.getTranslation('verify')} ${step.quotientDigit} ${this.getTranslation('multiply')} ${absDivisor} ${this.getTranslation('equals')} ${step.product}${this.getTranslation('writeProductBelow')} ${step.product} ${this.getTranslation('writeBelow')}${period}</p>`;
+                explanation += `<p>${this.getTranslation('subtraction')} ${step.workingNumber} ${this.getTranslation('minus')} ${step.product} ${this.getTranslation('equals')} ${step.remainder}${this.getTranslation('getRemainder')} ${step.remainder}${period}</p>`;
+            }
+        } else {
+            // 后续步骤：处理小数扩展和计算
+            const prevStep = this.steps[stepIndex - 1];
+            
+            // 检查是否是开始小数计算的步骤（第二步）
+            if (step.isDecimal && step.shouldShowDecimalInQuotient) {
+                explanation += `<p><em>${this.getTranslation('noteDecimalStart')}</em></p>`;
+                explanation += `<p>${this.getTranslation('addDecimalPlace')} ${absDividend} ${this.getTranslation('formNewDividend')} ${absDividend}.0${this.getTranslation('formNewDividendText')} ${step.workingNumber}${period}</p>`;
+            } else if (step.isDecimal) {
+                // 后续小数步骤：解释小数位的增加
+                // 找到第一个小数步骤的索引
+                let firstDecimalStepIndex = -1;
+                for (let i = 0; i < this.steps.length; i++) {
+                    if (this.steps[i].isDecimal && this.steps[i].shouldShowDecimalInQuotient) {
+                        firstDecimalStepIndex = i;
+                        break;
+                    }
+                }
+                
+                if (firstDecimalStepIndex !== -1) {
+                    // 计算当前步骤相对于第一个小数步骤的位置
+                    const decimalStepOffset = stepIndex - firstDecimalStepIndex;
+                    const prevDecimalPlaces = decimalStepOffset; // 前一步的小数位数
+                    const currentDecimalPlaces = decimalStepOffset + 1; // 当前步的小数位数
+                    
+                    // 构建前一步和当前步的被除数显示
+                    const prevExtended = absDividend + '.' + '0'.repeat(prevDecimalPlaces);
+                    const currentExtended = absDividend + '.' + '0'.repeat(currentDecimalPlaces);
+                    
+                    explanation += `<p>${this.getTranslation('extendDecimal')} ${prevExtended} ${this.getTranslation('addZeroBecome')} ${currentExtended}${period}</p>`;
+                }
+                
+                // 标准的余数和带下数字说明
+                if (prevStep.remainder !== undefined) {
+                    explanation += `<p>${this.getTranslation('remainderFromPrevious')} ${prevStep.remainder}${this.getTranslation('bringDownDigit')} 0${this.getTranslation('formNewDividend')} ${step.workingNumber}${period}</p>`;
+                }
+            }
+            
+            // 标准的计算步骤说明
+            explanation += `<p>${this.getTranslation('calculate')} ${step.workingNumber} ÷ ${absDivisor} ${this.getTranslation('equals')} ${step.quotientDigit}${this.getTranslation('writeInQuotient')} ${step.quotientDigit}${period}</p>`;
+            explanation += `<p>${this.getTranslation('verify')} ${step.quotientDigit} ${this.getTranslation('multiply')} ${absDivisor} ${this.getTranslation('equals')} ${step.product}${this.getTranslation('writeProductBelow')} ${step.product} ${this.getTranslation('writeBelow')}${period}</p>`;
+            explanation += `<p>${this.getTranslation('subtraction')} ${step.workingNumber} ${this.getTranslation('minus')} ${step.product} ${this.getTranslation('equals')} ${step.remainder}${this.getTranslation('getRemainder')} ${step.remainder}${period}</p>`;
+        }
+        
+        return explanation;
+    }
+    
+    getTranslation(key) {
+        // 获取当前语言的翻译文本
+        const currentLang = getCurrentLanguage();
+        const langData = languages[currentLang];
+        return langData ? langData.translations[key] : key;
+    }
+
+    getPunctuation(type) {
+        const currentLang = getCurrentLanguage();
+        const punctuation = {
+            'zh-CN': {
+                comma: '，',
+                period: '。',
+                quote: '"',
+                colon: '：'
+            },
+            'en': {
+                comma: ', ',
+                period: '.',
+                quote: '"',
+                colon: ': '
+            },
+            'de': {
+                comma: ', ',
+                period: '.',
+                quote: '"',
+                colon: ': '
+            },
+            'fr': {
+                comma: ', ',
+                period: '.',
+                quote: '"',
+                colon: ' : '
+            },
+            'ja': {
+                comma: '、',
+                period: '。',
+                quote: '「',
+                colon: '：'
+            },
+            'pt': {
+                comma: ', ',
+                period: '.',
+                quote: '"',
+                colon: ': '
+            },
+            'ru': {
+                comma: ', ',
+                period: '.',
+                quote: '"',
+                colon: ': '
+            },
+            'es': {
+                comma: ', ',
+                period: '.',
+                quote: '"',
+                colon: ': '
+            }
+        };
+        
+        return punctuation[currentLang] ? punctuation[currentLang][type] : punctuation['en'][type];
+    }
+    
+    generateFinalResultExplanation() {
+        const absDividend = Math.abs(this.dividend);
+        const absDivisor = Math.abs(this.divisor);
+        const hasNegative = this.dividend < 0 || this.divisor < 0;
+        
+        // 计算原始商（不四舍五入）
+        const rawQuotient = absDividend / absDivisor;
+        const extraDecimalPlace = this.decimals + 1;
+        
+        // 获取第N+1位小数数字
+        const multiplier = Math.pow(10, extraDecimalPlace);
+        const expandedQuotient = rawQuotient * multiplier;
+        const lastDigit = Math.floor(expandedQuotient) % 10;
+        
+        // 四舍五入处理
+        const roundedQuotient = parseFloat(rawQuotient.toFixed(this.decimals));
+        const finalQuotient = hasNegative ? 
+            ((this.dividend < 0) !== (this.divisor < 0) ? -roundedQuotient : roundedQuotient) : 
+            roundedQuotient;
+        
+        let explanation = `<h3>${this.getTranslation('finalResultTitle')}</h3>`;
+        
+        // 为什么计算额外一位小数
+        explanation += `<h4>${this.getTranslation('whyExtraDecimal')}</h4>`;
+        explanation += `<p>${this.getTranslation('whyExtraDecimalText')
+            .replace('{0}', extraDecimalPlace)
+            .replace('{1}', this.decimals)}</p>`;
+        
+        // 四舍五入规则
+        explanation += `<h4>${this.getTranslation('roundingRule')}</h4>`;
+        const roundingCondition = lastDigit < 5 ? this.getTranslation('lessThanFive') : this.getTranslation('greaterEqualFive');
+        const roundingAction = lastDigit < 5 ? this.getTranslation('keepSame') : this.getTranslation('roundUp');
+        explanation += `<p>${this.getTranslation('roundingRuleText')
+            .replace('{0}', extraDecimalPlace)
+            .replace('{1}', lastDigit)
+            .replace('{2}', roundingCondition)
+            .replace('{3}', this.decimals)
+            .replace('{4}', roundingAction)}</p>`;
+        
+        // 符号规则（如果有负数）
+        if (hasNegative) {
+            explanation += `<h4>${this.getTranslation('signRule')}</h4>`;
+            let signDescription = '';
+            let resultSign = '';
+            
+            if (this.dividend < 0 && this.divisor < 0) {
+                signDescription = this.getTranslation('bothNegative');
+                resultSign = this.getTranslation('resultPositive');
+            } else if (this.dividend < 0) {
+                signDescription = this.getTranslation('dividendNegative');
+                resultSign = this.getTranslation('resultNegative');
+            } else {
+                signDescription = this.getTranslation('divisorNegative');
+                resultSign = this.getTranslation('resultNegative');
+            }
+            
+            explanation += `<p>${this.getTranslation('signRuleText')
+                .replace('{0}', this.dividend)
+                .replace('{1}', this.divisor)
+                .replace('{2}', signDescription)
+                .replace('{3}', resultSign)}</p>`;
+        }
+        
+        // 最终答案
+        explanation += `<h4>${this.getTranslation('finalAnswer')}</h4>`;
+        explanation += `<p style="font-size: 1.2em; font-weight: bold; color: #007bff;">${finalQuotient}</p>`;
+        
+        return explanation;
+    }
+    
+    calculateFinalQuotient() {
+        // 计算最终商的值（包括符号处理）
+        const absQuotient = Math.abs(this.dividend) / Math.abs(this.divisor);
+        const isNegative = (this.dividend < 0) !== (this.divisor < 0);
+        const quotient = isNegative ? -absQuotient : absQuotient;
+        
+        if (this.decimals > 0) {
+            return quotient.toFixed(this.decimals);
+        } else {
+            return Math.floor(Math.abs(quotient)) * (isNegative ? -1 : 1);
+        }
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    new LongDivisionDemo();
+    // 创建全局实例，用于语言切换时更新说明面板
+    window.longDivisionDemo = new LongDivisionDemo();
 });

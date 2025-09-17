@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>交互式长除法演示工具 - 在线长除法计算与学习</title>
+    <title>Fractions To Decimals</title>
+    
+    <!-- 网站图标 -->
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
     <link rel="stylesheet" href="styles.css">
     <!-- 网站描述 -->
     <meta name="description" content="免费在线交互式长除法演示工具，帮助学生和老师通过动画一步步理解长除法的计算过程，支持整数与小数除法。">
@@ -15,16 +20,16 @@
     <meta property="og:title" content="交互式长除法演示工具 - 在线长除法计算与学习">
     <meta property="og:description" content="通过交互动画学习长除法，逐步演示每个步骤，适合学生和教师使用。">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourdomain.com/">
-    <!--<meta property="og:image" content="https://yourdomain.com/long-division-preview.png">-->
+    <meta property="og:url" content="https://fractionstodecimals.com/">
+    <meta property="og:image" content="long-division-preview.png">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="交互式长除法演示工具">
     <meta name="twitter:description" content="在线长除法演示工具，帮助学生通过动画逐步掌握除法计算方法。">
-    <meta name="twitter:image" content="https://yourdomain.com/long-division-preview.png">
+    <meta name="twitter:image" content="long-division-preview.png">
 
-    <link rel="canonical" href="https://yourdomain.com/">
+    <link rel="canonical" href="https://fractionstodecimals.com/">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -58,8 +63,15 @@
         <div class="error-message" id="errorMessage"></div>
 
         <div class="stage" id="stage">
-            <div class="long-division" id="longDivision">
-                <!-- 动态生成的长除法布局 -->
+            <div class="calculation-container">
+                <div class="long-division" id="longDivision">
+                    <!-- 动态生成的长除法布局 -->
+                </div>
+                <div class="explanation-panel" id="explanationPanel">
+                    <div class="explanation-content" id="explanationContent">
+                        <!-- 动态生成的说明内容 -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>

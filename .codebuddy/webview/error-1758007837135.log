@@ -1,0 +1,4 @@
+Webview errors at url: http://localhost:8001/
+error: 
+ [Window Error]: [javascript-error]: JavaScript Error: Uncaught ReferenceError: getCurrentLanguage is not defined | Url: http://localhost:8001/script.js | File: http://localhost:8001/script.js:603:29
+Uncaught ReferenceError: getCurrentLanguage is not defined

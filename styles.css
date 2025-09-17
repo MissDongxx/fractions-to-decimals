@@ -244,6 +244,94 @@ footer {
     align-items: flex-start;
 }
 
+/* 计算容器 - 响应式布局 */
+.calculation-container {
+    display: flex;
+    width: 100%;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* 宽屏布局 (桌面端) */
+@media (min-width: 1024px) {
+    .calculation-container {
+        flex-direction: row;
+    }
+    
+    .long-division {
+        flex: 0 0 auto;
+        min-width: 500px;
+        max-width: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .explanation-panel {
+        flex: 0 0 350px;
+        width: 350px;
+    }
+}
+
+/* 移动端布局 */
+@media (max-width: 1023px) {
+    .calculation-container {
+        flex-direction: column;
+    }
+    
+    .long-division {
+        width: 100%;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .explanation-panel {
+        width: 100%;
+    }
+    
+    .stage {
+        padding: 20px;
+    }
+}
+
+/* 说明面板样式 */
+.explanation-panel {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.explanation-content {
+    color: #374151;
+}
+
+.explanation-content .step-number {
+    color: #3b82f6;
+    font-weight: bold;
+}
+
+.explanation-content .highlight {
+    background-color: #dbeafe;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.explanation-content .emoji {
+    margin-right: 8px;
+}
+
+/* 隐藏状态 */
+.explanation-panel.hidden {
+    display: none;
+}
+
 /* 长除法布局 */
 .long-division {
     font-size: 24px;
@@ -251,7 +339,7 @@ footer {
     position: relative;
     display: flex;
     align-items: flex-start;
-    gap: 10px;
+    gap: 0px;
 }
 
 /* 除数区域 */
@@ -259,7 +347,7 @@ footer {
     display: flex;
     align-items: flex-end;
     position: relative;
-    margin-top: 35px; /* 对齐到被除数行 */
+    margin-top: 23px; /* 对齐到被除数行 */
 }
 
 .divisor-number {
@@ -299,10 +387,22 @@ footer {
 
 /* 商区域 */
 .quotient-row {
-    margin-bottom: 10px;
-    min-height: 30px;
-    border-bottom: 2px solid #111827;
-    padding-bottom: 5px;
+    position: relative;
+    height: 35px;            /* 改为固定高度 */
+    margin-bottom: 5px;
+    padding-bottom: 10px;
+    line-height: 25px;       /* 确保文字垂直居中 */
+}
+
+.quotient-row::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    right: 0;
+    height: 2px;
+    background-color: #111827;
+    
 }
 
 .quotient-digit {
@@ -310,11 +410,16 @@ footer {
     min-width: 30px;
     text-align: center;
     position: relative;
+    margin-bottom: 10px;
+}
+
+.quotient-digit.spacer {
+    visibility: hidden;
 }
 
 /* 被除数区域 */
 .dividend-row {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .dividend-digit {
@@ -520,72 +625,3 @@ a:hover {
     text-decoration: underline;
 }
 
-/* ===== 教学性内容区 ===== */
-main {
-    margin-top: 40px;
-}
-
-section {
-    background: #fff;
-    border-radius: 12px;
-    padding: 24px;
-    margin-bottom: 24px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-section:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-}
-
-section h2 {
-    font-size: 1.4rem;
-    margin-bottom: 16px;
-    border-left: 4px solid #0073e6;
-    padding-left: 12px;
-    color: #0073e6;
-}
-
-section ul li, 
-section ol li {
-    margin: 6px 0;
-}
-
-/* ===== FAQ 样式 ===== */
-dl {
-    margin: 0;
-}
-dt {
-    font-weight: bold;
-    margin-top: 12px;
-    color: #2c3e50;
-}
-dd {
-    margin: 6px 0 12px 16px;
-    color: #555;
-    background: #f3f7fb;
-    padding: 10px 14px;
-    border-radius: 8px;
-    border-left: 3px solid #0073e6;
-}
-
-/* ===== 延伸阅读 ===== */
-section ul li a {
-    display: inline-block;
-    padding: 6px 10px;
-    background: #eef6ff;
-    border-radius: 6px;
-    transition: background 0.2s ease;
-}
-section ul li a:hover {
-    background: #d6ebff;
-}
-
-/* ===== Footer ===== */
-footer {
-    text-align: center;
-    margin-top: 40px;
-    padding: 20px;
-    font-size: 0.9rem;
-    color: #666;
-}
