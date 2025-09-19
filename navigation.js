@@ -173,12 +173,20 @@ class MathToolsNavigation {
     }
 
     async initializeToolScript(toolName) {
-        // 清理之前的工具实例
+        // 清理之前的工具实例和全局变量
         if (this.toolInstances[this.currentTool]) {
             // 如果有清理方法，调用它
             if (typeof this.toolInstances[this.currentTool].destroy === 'function') {
                 this.toolInstances[this.currentTool].destroy();
             }
+        }
+        
+        // 清理全局变量
+        if (window.longDivisionDemo) {
+            window.longDivisionDemo = null;
+        }
+        if (window.decimalToFractionDemo) {
+            window.decimalToFractionDemo = null;
         }
 
         // 检查脚本是否已经加载
@@ -214,11 +222,15 @@ class MathToolsNavigation {
             case 'fraction-to-decimal':
                 if (typeof LongDivisionDemo !== 'undefined') {
                     this.toolInstances[toolName] = new LongDivisionDemo();
+                    // 设置全局变量，供语言切换时使用
+                    window.longDivisionDemo = this.toolInstances[toolName];
                 }
                 break;
             case 'decimal-to-fraction':
                 if (typeof DecimalToFractionDemo !== 'undefined') {
                     this.toolInstances[toolName] = new DecimalToFractionDemo();
+                    // 设置全局变量，供语言切换时使用
+                    window.decimalToFractionDemo = this.toolInstances[toolName];
                 }
                 break;
         }
