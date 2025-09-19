@@ -1,0 +1,160 @@
+/* 导航标签页样式 */
+.tool-tabs {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 15px 20px;
+    border: none;
+    background: white;
+    color: #6b7280;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    min-width: 120px;
+}
+
+.tab-btn:hover {
+    background: #f9fafb;
+    color: #374151;
+}
+
+.tab-btn.active {
+    background: #3b82f6;
+    color: white;
+    font-weight: 600;
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #1d4ed8;
+}
+
+/* 工具内容区域 */
+.tool-content {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+    min-height: 600px;
+    overflow: hidden;
+}
+
+/* 工具介绍区域 */
+.tools-introduction {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.tools-introduction section {
+    background: white;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tools-introduction section h2 {
+    color: #111827;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 10px;
+}
+
+/* 工具卡片网格 */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.tool-card {
+    background: #f9fafb;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #3b82f6;
+    transition: transform 0.2s ease;
+}
+
+.tool-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.tool-card h3 {
+    color: #111827;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.tool-card p {
+    color: #6b7280;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .tool-tabs {
+        flex-direction: column;
+        margin: 20px 0;
+    }
+    
+    .tab-btn {
+        border-bottom: 1px solid #e5e7eb;
+        border-radius: 0;
+    }
+    
+    .tab-btn:last-child {
+        border-bottom: none;
+    }
+    
+    .tab-btn.active::after {
+        display: none;
+    }
+    
+    .tools-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .tools-introduction {
+        padding: 0 15px;
+    }
+    
+    .tools-introduction section {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tab-btn {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    .tool-card {
+        padding: 15px;
+    }
+    
+    .tool-card h3 {
+        font-size: 1.1rem;
+    }
+}

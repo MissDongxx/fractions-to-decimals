@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="decimal_to_fraction_title">小数转分数工具</title>
+    
+    <!-- 网站图标 -->
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
+    <link rel="stylesheet" href="styles.css">
+    <!-- 网站描述 -->
+    <meta name="description" content="免费在线小数转分数工具，支持有限小数和循环小数转换，通过详细步骤演示帮助学生理解小数转分数的数学原理。" data-i18n="decimal_to_fraction_description">
+
+    <!-- 关键词 -->
+    <meta name="keywords" content="小数转分数, 循环小数, 分数化简, 数学工具, 在线计算器, 数学学习, 教学工具">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="小数转分数工具 - 在线数学计算器">
+    <meta property="og:description" content="支持有限小数和循环小数转分数，详细步骤演示。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fractionstodecimals.com/decimal-to-fraction.html">
+    <meta property="og:image" content="long-division-preview.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="小数转分数工具">
+    <meta name="twitter:description" content="在线小数转分数工具，支持循环小数转换。">
+    <meta name="twitter:image" content="long-division-preview.png">
+
+    <link rel="canonical" href="https://fractionstodecimals.com/decimal-to-fraction.html">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 data-i18n="decimal_to_fraction_header">小数转分数演示工具</h1>
+            <p data-i18n="decimal_to_fraction_subheader">通过详细步骤学习小数转分数的数学原理</p>
+        </header>
+
+        <div class="controls">
+            <div class="input-group">
+                <label for="decimal" data-i18n="decimal_label">小数:</label>
+                <input type="text" id="decimal" placeholder="例如: 0.75 或 0.(3) 或 -1.25" data-i18n-placeholder="decimal_placeholder" maxlength="20">
+            </div>
+
+            <div class="button-group">
+                <button id="generateBtn" class="btn btn-primary" data-i18n="generate_button">生成</button>
+                <button id="nextBtn" class="btn btn-secondary" disabled data-i18n="next_button">下一步</button>
+                <button id="prevBtn" class="btn btn-secondary" disabled data-i18n="prev_button">上一步</button>
+            </div>
+        </div>
+
+        <div class="error-message" id="errorMessage" style="display: none;"></div>
+
+        <div class="stage" id="stage">
+            <div class="calculation-container">
+                <div class="conversion-display" id="conversionDisplay">
+                    <!-- 动态生成的转换过程显示 -->
+                </div>
+                <div class="explanation-panel" id="explanationPanel">
+                    <div class="explanation-content" id="explanationContent">
+                        <!-- 动态生成的说明内容 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 教学性内容区 -->
+    <main>
+        <section>
+            <h2 data-i18n="what_is_decimal_to_fraction_title">什么是小数转分数？</h2>
+            <p data-i18n="what_is_decimal_to_fraction_p1">小数转分数是将小数形式的数值转换为分数形式的数学运算。这个过程帮助我们更好地理解数的本质，特别是有理数的表示方法。</p>
+            <p data-i18n="what_is_decimal_to_fraction_p2">小数可以分为有限小数（如0.75）和无限小数，其中无限小数又分为循环小数（如0.333...）和无理数。有理数都可以表示为分数形式。</p>
+        </section>
+
+        <section>
+            <h2 data-i18n="toolFeatures">工具特色</h2>
+            <ul>
+                <li data-i18n="feature1">支持有限小数转分数（如 0.75 → 3/4）</li>
+                <li data-i18n="feature2">支持循环小数转分数（如 0.(3) → 1/3）</li>
+                <li data-i18n="feature3">支持负数小数转换（如 -0.25 → -1/4）</li>
+                <li data-i18n="feature4">自动化简分数到最简形式</li>
+                <li data-i18n="feature5">详细步骤演示，帮助理解转换原理</li>
+                <li data-i18n="feature6">适合课堂教学、家庭辅导、自主学习</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 data-i18n="usage_title">使用方法</h2>
+            <ol>
+                <li data-i18n="usage_step1">在输入框中输入要转换的<strong>小数</strong>（支持负数）</li>
+                <li data-i18n="usage_step2">选择转换方法或使用<strong>自动识别</strong></li>
+                <li data-i18n="usage_step3">点击<strong>生成</strong>按钮开始转换演示</li>
+                <li data-i18n="usage_step4">使用<em>下一步</em>或<em>上一步</em>按钮查看详细转换过程</li>
+                <li data-i18n="usage_step5">点击<em>重新开始</em>可清空数据并重新操作</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2 data-i18n="methods_title">小数转分数的方法详解</h2>
+            <h3 data-i18n="finite_method_title">1. 有限小数转分数</h3>
+            <p data-i18n="finite_method_p1">有限小数转分数的基本原理是根据小数位数确定分母：</p>
+            <ul>
+                <li data-i18n="finite_method_li1">一位小数：分母为10（如 0.7 = 7/10）</li>
+                <li data-i18n="finite_method_li2">两位小数：分母为100（如 0.75 = 75/100 = 3/4）</li>
+                <li data-i18n="finite_method_li3">三位小数：分母为1000（如 0.125 = 125/1000 = 1/8）</li>
+            </ul>
+            <p data-i18n="finite_method_p2">转换后需要化简分数到最简形式。</p>
+
+            <h3 data-i18n="repeating_method_title">2. 循环小数转分数</h3>
+            <p data-i18n="repeating_method_p1">循环小数转分数使用代数方法：</p>
+            <ol>
+                <li data-i18n="repeating_method_li1">设循环小数为 x</li>
+                <li data-i18n="repeating_method_li2">根据循环节长度，将 x 乘以相应的10的幂次</li>
+                <li data-i18n="repeating_method_li3">两式相减消除循环部分</li>
+                <li data-i18n="repeating_method_li4">解方程得到分数形式</li>
+            </ol>
+            <p data-i18n="repeating_method_p2"><strong data-i18n="example_strong">例如：</strong>0.333... = 1/3</p>
+            <p data-i18n="repeating_method_p3">设 x = 0.333...，则 10x = 3.333...，两式相减得 9x = 3，所以 x = 3/9 = 1/3</p>
+        </section>
+
+        <section>
+            <h2 data-i18n="common_decimals_title">常见小数转分数对照表</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
+                <div>
+                    <h4 data-i18n="common_finite_title">常见有限小数</h4>
+                    <ul>
+                        <li data-i18n="finite_example1">0.5 = 1/2</li>
+                        <li data-i18n="finite_example2">0.25 = 1/4</li>
+                        <li data-i18n="finite_example3">0.75 = 3/4</li>
+                        <li data-i18n="finite_example4">0.2 = 1/5</li>
+                        <li data-i18n="finite_example5">0.125 = 1/8</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 data-i18n="common_repeating_title">常见循环小数</h4>
+                    <ul>
+                        <li data-i18n="repeating_example1">0.(3) = 1/3</li>
+                        <li data-i18n="repeating_example2">0.(6) = 2/3</li>
+                        <li data-i18n="repeating_example3">0.(142857) = 1/7</li>
+                        <li data-i18n="repeating_example4">0.1(6) = 1/6</li>
+                        <li data-i18n="repeating_example5">0.(09) = 1/11</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 data-i18n="input_format_title">输入格式说明</h2>
+            <h3 data-i18n="supported_formats_title">支持的输入格式：</h3>
+            <ul>
+                <li data-i18n="format1"><strong data-i18n="finite_strong">有限小数：</strong>0.75、-1.25、3.14</li>
+                <li data-i18n="format2"><strong data-i18n="repeating_paren_strong">循环小数（括号表示法）：</strong>0.(3)、1.(142857)、0.1(6)</li>
+                <li data-i18n="format3"><strong data-i18n="repeating_ellipsis_strong">循环小数（省略号表示法）：</strong>0.333...、0.166666...</li>
+                <li data-i18n="format4"><strong data-i18n="mixed_strong">混合循环小数：</strong>0.1(23)、-2.3(45)</li>
+            </ul>
+            <h3 data-i18n="notes_title">注意事项：</h3>
+            <ul>
+                <li data-i18n="note1">支持负数，在数字前加负号即可</li>
+                <li data-i18n="note2">循环节用括号()表示，如0.(3)表示0.333...</li>
+                <li data-i18n="note3">工具会自动识别输入格式并选择合适的转换方法</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 data-i18n="faq_title">常见问题 (FAQ)</h2>
+            <dl>
+                <dt data-i18n="faq_q1">如何输入循环小数？</dt>
+                <dd data-i18n="faq_a1">可以使用括号表示循环节，如0.(3)表示0.333...，或者直接输入0.333...也可以。</dd>
+
+                <dt data-i18n="faq_q2">为什么要将小数转换为分数？</dt>
+                <dd data-i18n="faq_a2">分数形式更精确，避免了小数的舍入误差，在数学运算中更便于计算，特别是在代数运算中。</dd>
+
+                <dt data-i18n="faq_q3">所有小数都能转换为分数吗？</dt>
+                <dd data-i18n="faq_a3">有理数（有限小数和循环小数）都可以转换为分数。无理数（如π、√2）不能精确表示为分数。</dd>
+
+                <dt data-i18n="faq_q4">什么是最简分数？</dt>
+                <dd data-i18n="faq_a4">最简分数是分子和分母的最大公约数为1的分数，也就是不能再化简的分数形式。</dd>
+            </dl>
+        </section>
+    </main>
+
+    <footer>
+        <p data-i18n="footer_text">© 2025 小数转分数演示工具 | 数学学习与教学辅助平台</p>
+    </footer>
+    
+    <script src="languages.js"></script>
+    <script src="decimal-to-fraction.js"></script>
+</body>
+</html>
