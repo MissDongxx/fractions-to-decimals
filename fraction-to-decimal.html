@@ -5,28 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fractions To Decimals</title>
     
-    <!-- 网站图标 -->
+    <!-- Website Icons -->
     <link rel="icon" type="image/png" href="icon.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     
     <link rel="stylesheet" href="styles.css">
-    <!-- 网站描述 -->
-    <meta name="description" content="免费在线交互式长除法演示工具，帮助学生和老师通过动画一步步理解长除法的计算过程，支持整数与小数除法。">
+    <!-- Website Description -->
+    <meta name="description" content="Free online interactive long division demonstration tool that helps students and teachers understand the long division calculation process step by step through animations, supporting integer and decimal division.">
 
-    <!-- 关键词（现代搜索引擎影响较小，但仍可辅助） -->
-    <meta name="keywords" content="长除法, 除法演示, 除法计算器, 数学学习工具, 小学数学, 在线长除法, 除法动画, 数学教学, 算术练习">
+    <!-- Keywords -->
+    <meta name="keywords" content="long division, division demonstration, division calculator, math learning tools, elementary math, online long division, division animation, math teaching, arithmetic practice">
 
-    <!-- Open Graph（社交分享优化） -->
-    <meta property="og:title" content="交互式长除法演示工具 - 在线长除法计算与学习">
-    <meta property="og:description" content="通过交互动画学习长除法，逐步演示每个步骤，适合学生和教师使用。">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Interactive Long Division Demonstration Tool - Online Long Division Calculator and Learning">
+    <meta property="og:description" content="Learn long division through interactive animations, demonstrating each step progressively, suitable for students and teachers.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fractionstodecimals.com/">
     <meta property="og:image" content="long-division-preview.png">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="交互式长除法演示工具">
-    <meta name="twitter:description" content="在线长除法演示工具，帮助学生通过动画逐步掌握除法计算方法。">
+    <meta name="twitter:title" content="Interactive Long Division Demonstration Tool">
+    <meta name="twitter:description" content="Online long division demonstration tool that helps students master division calculation methods through animations step by step.">
     <meta name="twitter:image" content="long-division-preview.png">
 
     <link rel="canonical" href="https://fractionstodecimals.com/">
@@ -35,28 +35,28 @@
 <body>
     <div class="container">
         <header class="header">
-            <h1 data-i18n="title">交互式长除法演示工具</h1>
-            <p data-i18n="subtitle">通过动画学习长除法的每一个步骤</p>
+            <h1 data-i18n="title">Interactive Long Division Demonstration Tool</h1>
+            <p data-i18n="subtitle">Learn every step of long division through animation</p>
         </header>
 
         <div class="controls">
             <div class="input-group">
-                <label for="dividend" data-i18n="dividend"></label>
-                <input type="text" id="dividend" data-i18n="dividendPlaceholder" placeholder="例如: 864" maxlength="10">
+                <label for="dividend" data-i18n="dividend">Dividend:</label>
+                <input type="text" id="dividend" data-i18n="dividendPlaceholder" placeholder="e.g.: 864" maxlength="10">
             </div>
             <div class="input-group">
-                <label for="divisor" data-i18n="divisor"></label>
-                <input type="text" id="divisor" data-i18n="divisorPlaceholder" placeholder="例如: 12" maxlength="10">
+                <label for="divisor" data-i18n="divisor">Divisor:</label>
+                <input type="text" id="divisor" data-i18n="divisorPlaceholder" placeholder="e.g.: 12" maxlength="10">
             </div>
             <div class="input-group">
-                <label for="decimals" data-i18n="decimals"></label>
+                <label for="decimals" data-i18n="decimals">Decimal Places:</label>
                 <input type="number" id="decimals" data-i18n="decimalsPlaceholder" value="2" min="0" max="12">
             </div>
             <div class="button-group">
-                <button id="generateBtn" class="btn btn-primary" data-i18n="generate"></button>
-                <button id="nextBtn" class="btn btn-secondary" data-i18n="nextStep" disabled></button>
-                <button id="prevBtn" class="btn btn-secondary" data-i18n="prevStep" disabled></button>
-                <button id="restartBtn" class="btn btn-secondary" data-i18n="restart" disabled></button>
+                <button id="generateBtn" class="btn btn-primary" data-i18n="generate">Generate</button>
+                <button id="nextBtn" class="btn btn-secondary" data-i18n="nextStep" disabled>Next Step</button>
+                <button id="prevBtn" class="btn btn-secondary" data-i18n="prevStep" disabled>Previous Step</button>
+                <button id="restartBtn" class="btn btn-secondary" data-i18n="restart" disabled>Restart</button>
             </div>
         </div>
 
@@ -65,71 +65,71 @@
         <div class="stage" id="stage">
             <div class="calculation-container">
                 <div class="long-division" id="longDivision">
-                    <!-- 动态生成的长除法布局 -->
+                    <!-- Dynamically generated long division layout -->
                 </div>
                 <div class="explanation-panel" id="explanationPanel">
                     <div class="explanation-content" id="explanationContent">
-                        <!-- 动态生成的说明内容 -->
+                        <!-- Dynamically generated explanation content -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- 教学性内容区 -->
+    <!-- Educational Content Area -->
     <main>
         <section>
-            <h2 data-i18n="whatIsLongDivision">什么是长除法？</h2>
-            <p data-i18n="longDivisionDesc1">长除法是一种逐步进行的除法计算方法，通常用于大数或小数的运算。它通过"商、余数、减法"的反复操作，让学生逐步理解除法的逻辑，而不是单纯背诵口诀。</p>
-            <p data-i18n="longDivisionDesc2">在小学数学学习中，长除法是进阶的重要环节，为分数运算、小数运算以及代数打下基础。</p>
+            <h2 data-i18n="whatIsLongDivision">What is Long Division?</h2>
+            <p data-i18n="longDivisionDesc1">Long division is a step-by-step division calculation method, typically used for large numbers or decimal operations. Through repeated operations of "quotient, remainder, subtraction," it helps students gradually understand the logic of division, rather than simply memorizing formulas.</p>
+            <p data-i18n="longDivisionDesc2">In elementary mathematics learning, long division is an important advanced step that lays the foundation for fraction operations, decimal operations, and algebra.</p>
         </section>
 
         <section>
-            <h2 data-i18n="toolFeatures">工具特色</h2>
+            <h2 data-i18n="toolFeatures">Tool Features</h2>
             <ul>
-                <li data-i18n="feature1">逐步演示长除法的完整计算过程</li>
-                <li data-i18n="feature2">支持整数与小数除法</li>
-                <li data-i18n="feature3">交互式操作，可前进或回退步骤</li>
-                <li data-i18n="feature4">适合课堂教学、家庭辅导、自主学习</li>
+                <li data-i18n="feature1">Step-by-step demonstration of the complete long division calculation process</li>
+                <li data-i18n="feature2">Supports integer and decimal division</li>
+                <li data-i18n="feature3">Interactive operation, can advance or go back steps</li>
+                <li data-i18n="feature4">Suitable for classroom teaching, home tutoring, and self-study</li>
             </ul>
         </section>
 
         <section>
-            <h2 data-i18n="howToUse">使用方法</h2>
+            <h2 data-i18n="howToUse">How to Use</h2>
             <ol>
-                <li data-i18n="step1"></li>
-                <li data-i18n="step2"></li>
-                <li data-i18n="step3"></li>
-                <li data-i18n="step4"></li>
-                <li data-i18n="step5"></li>
+                <li data-i18n="step1">Enter the dividend and divisor in the input boxes</li>
+                <li data-i18n="step2">Set the desired number of decimal places</li>
+                <li data-i18n="step3">Click the Generate button to start the demonstration</li>
+                <li data-i18n="step4">Use Next Step or Previous Step buttons to navigate through the process</li>
+                <li data-i18n="step5">Click Restart to clear and start over</li>
             </ol>
         </section>
 
         <section>
-            <h2 data-i18n="detailedSteps">长除法的计算步骤详解</h2>
-            <p data-i18n="stepsIntro">以下是长除法的标准步骤：</p>
+            <h2 data-i18n="detailedSteps">Detailed Steps of Long Division</h2>
+            <p data-i18n="stepsIntro">Here are the standard steps for long division:</p>
             <ol>
-                <li data-i18n="detailStep1">确定被除数的前几位是否大于除数，找到第一个可以整除的位置。</li>
-                <li data-i18n="detailStep2">写出商的第一位。</li>
-                <li data-i18n="detailStep3">用商乘以除数，得到部分积。</li>
-                <li data-i18n="detailStep4">将部分积与被除数的对应部分相减，得到余数。</li>
-                <li data-i18n="detailStep5">将余数与被除数的下一位"放下来"，组成新的被除数。</li>
-                <li data-i18n="detailStep6">重复以上步骤，直到被除数全部用完，或达到所需小数位。</li>
+                <li data-i18n="detailStep1">Determine if the first few digits of the dividend are greater than the divisor, find the first position that can be divided.</li>
+                <li data-i18n="detailStep2">Write the first digit of the quotient.</li>
+                <li data-i18n="detailStep3">Multiply the quotient by the divisor to get the partial product.</li>
+                <li data-i18n="detailStep4">Subtract the partial product from the corresponding part of the dividend to get the remainder.</li>
+                <li data-i18n="detailStep5">"Bring down" the next digit of the dividend with the remainder to form a new dividend.</li>
+                <li data-i18n="detailStep6">Repeat the above steps until the dividend is completely used up or the desired decimal places are reached.</li>
             </ol>
-            <p data-i18n="example">例如：864 ÷ 12 → 首先 86 ÷ 12 = 7 …… 余 2，然后将 4 放下来，继续计算。</p>
+            <p data-i18n="example">For example: 864 ÷ 12 → First 86 ÷ 12 = 7 with remainder 2, then bring down 4 and continue calculating.</p>
         </section>
 
         <section>
-            <h2 data-i18n="faq">常见问题 (FAQ)</h2>
+            <h2 data-i18n="faq">Frequently Asked Questions (FAQ)</h2>
             <dl>
-                <dt data-i18n="faqQ1">长除法和短除法有什么区别？</dt>
-                <dd data-i18n="faqA1">短除法适合小数除以个位数的简单计算，长除法适合大数或复杂小数的计算，步骤更详细。</dd>
+                <dt data-i18n="faqQ1">What's the difference between long division and short division?</dt>
+                <dd data-i18n="faqA1">Short division is suitable for simple calculations of decimals divided by single digits, while long division is suitable for large numbers or complex decimal calculations with more detailed steps.</dd>
 
-                <dt data-i18n="faqQ2">小学生学习长除法时常见困难是什么？</dt>
-                <dd data-i18n="faqA2">常见难点包括"确定商的位数"和"余数与下一位数的结合"。通过动画演示可以帮助学生更直观地理解。</dd>
+                <dt data-i18n="faqQ2">What are common difficulties for elementary students learning long division?</dt>
+                <dd data-i18n="faqA2">Common difficulties include "determining the number of digits in the quotient" and "combining remainders with the next digit." Animation demonstrations can help students understand more intuitively.</dd>
 
-                <dt data-i18n="faqQ3">这个工具适合哪些人？</dt>
-                <dd data-i18n="faqA3">适合小学生、中学生、教师、家长，或任何想要复习和掌握长除法的人。</dd>
+                <dt data-i18n="faqQ3">Who is this tool suitable for?</dt>
+                <dd data-i18n="faqA3">Suitable for elementary students, middle school students, teachers, parents, or anyone who wants to review and master long division.</dd>
             </dl>
         </section>
     </main>

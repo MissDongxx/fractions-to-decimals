@@ -5,7 +5,7 @@ const languages = {
         flag: '🇨🇳',
         translations: {
             // 主导航页面
-            mainTitle: '分数与小数转换工具集',
+            mainTitle: '数学工具',
             mainSubtitle: '专业的在线数学工具，帮助您轻松进行分数与小数的转换计算',
             fractionToDecimal: '分数转小数',
             decimalToFraction: '小数转分数',
@@ -212,7 +212,7 @@ const languages = {
             verification: '验证结果',
             
             // 版权信息
-            copyright: '© 2025 数学分数与小数转换工具集 | 专业的数学学习与教学辅助平台',
+            copyright: '© 2025 数学工具 | 专业的数学学习与教学辅助平台',
             
             // 原有的长除法翻译
             title: '交互式长除法演示工具',

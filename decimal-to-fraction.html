@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="decimal_to_fraction_title">小数转分数工具</title>
+    <title data-i18n="decimal_to_fraction_title">Decimal to Fraction Converter</title>
     
-    <!-- 网站图标 -->
+    <!-- Website Icons -->
     <link rel="icon" type="image/png" href="icon.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     
     <link rel="stylesheet" href="styles.css">
-    <!-- 网站描述 -->
-    <meta name="description" content="免费在线小数转分数工具，支持有限小数和循环小数转换，通过详细步骤演示帮助学生理解小数转分数的数学原理。" data-i18n="decimal_to_fraction_description">
+    <!-- Website Description -->
+    <meta name="description" content="Free online decimal to fraction converter, supports finite and repeating decimals conversion with detailed step-by-step demonstration to help students understand the mathematical principles." data-i18n="decimal_to_fraction_description">
 
-    <!-- 关键词 -->
-    <meta name="keywords" content="小数转分数, 循环小数, 分数化简, 数学工具, 在线计算器, 数学学习, 教学工具">
+    <!-- Keywords -->
+    <meta name="keywords" content="decimal to fraction, repeating decimal, fraction simplification, math tools, online calculator, math learning, teaching tools">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="小数转分数工具 - 在线数学计算器">
-    <meta property="og:description" content="支持有限小数和循环小数转分数，详细步骤演示。">
+    <meta property="og:title" content="Decimal to Fraction Converter - Online Math Calculator">
+    <meta property="og:description" content="Supports finite and repeating decimal to fraction conversion with detailed step-by-step demonstration.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fractionstodecimals.com/decimal-to-fraction.html">
     <meta property="og:image" content="long-division-preview.png">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="小数转分数工具">
-    <meta name="twitter:description" content="在线小数转分数工具，支持循环小数转换。">
+    <meta name="twitter:title" content="Decimal to Fraction Converter">
+    <meta name="twitter:description" content="Online decimal to fraction converter with repeating decimal support.">
     <meta name="twitter:image" content="long-division-preview.png">
 
     <link rel="canonical" href="https://fractionstodecimals.com/decimal-to-fraction.html">
@@ -35,20 +35,20 @@
 <body>
     <div class="container">
         <header class="header">
-            <h1 data-i18n="decimal_to_fraction_header">小数转分数演示工具</h1>
-            <p data-i18n="decimal_to_fraction_subheader">通过详细步骤学习小数转分数的数学原理</p>
+            <h1 data-i18n="decimal_to_fraction_header">Decimal to Fraction Demonstration Tool</h1>
+            <p data-i18n="decimal_to_fraction_subheader">Learn the mathematical principles of decimal to fraction conversion through detailed steps</p>
         </header>
 
         <div class="controls">
             <div class="input-group">
-                <label for="decimal" data-i18n="decimal_label">小数:</label>
-                <input type="text" id="decimal" placeholder="例如: 0.75 或 0.(3) 或 -1.25" data-i18n-placeholder="decimal_placeholder" maxlength="20">
+                <label for="decimal" data-i18n="decimal_label">Decimal:</label>
+                <input type="text" id="decimal" placeholder="e.g.: 0.75 or 0.(3) or -1.25" data-i18n-placeholder="decimal_placeholder" maxlength="20">
             </div>
 
             <div class="button-group">
-                <button id="generateBtn" class="btn btn-primary" data-i18n="generate_button">生成</button>
-                <button id="nextBtn" class="btn btn-secondary" disabled data-i18n="next_button">下一步</button>
-                <button id="prevBtn" class="btn btn-secondary" disabled data-i18n="prev_button">上一步</button>
+                <button id="generateBtn" class="btn btn-primary" data-i18n="generate_button">Generate</button>
+                <button id="nextBtn" class="btn btn-secondary" disabled data-i18n="next_button">Next Step</button>
+                <button id="prevBtn" class="btn btn-secondary" disabled data-i18n="prev_button">Previous Step</button>
             </div>
         </div>
 
@@ -57,45 +57,45 @@
         <div class="stage" id="stage">
             <div class="calculation-container">
                 <div class="conversion-display" id="conversionDisplay">
-                    <!-- 动态生成的转换过程显示 -->
+                    <!-- Dynamically generated conversion process display -->
                 </div>
                 <div class="explanation-panel" id="explanationPanel">
                     <div class="explanation-content" id="explanationContent">
-                        <!-- 动态生成的说明内容 -->
+                        <!-- Dynamically generated explanation content -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- 教学性内容区 -->
+    <!-- Educational Content Area -->
     <main>
         <section>
-            <h2 data-i18n="what_is_decimal_to_fraction_title">什么是小数转分数？</h2>
-            <p data-i18n="what_is_decimal_to_fraction_p1">小数转分数是将小数形式的数值转换为分数形式的数学运算。这个过程帮助我们更好地理解数的本质，特别是有理数的表示方法。</p>
-            <p data-i18n="what_is_decimal_to_fraction_p2">小数可以分为有限小数（如0.75）和无限小数，其中无限小数又分为循环小数（如0.333...）和无理数。有理数都可以表示为分数形式。</p>
+            <h2 data-i18n="what_is_decimal_to_fraction_title">What is Decimal to Fraction Conversion?</h2>
+            <p data-i18n="what_is_decimal_to_fraction_p1">Decimal to fraction conversion is a mathematical operation that transforms decimal numbers into fractional form. This process helps us better understand the nature of numbers, especially the representation of rational numbers.</p>
+            <p data-i18n="what_is_decimal_to_fraction_p2">Decimals can be classified into finite decimals (like 0.75) and infinite decimals, where infinite decimals are further divided into repeating decimals (like 0.333...) and irrational numbers. All rational numbers can be expressed in fractional form.</p>
         </section>
 
         <section>
-            <h2 data-i18n="toolFeatures">工具特色</h2>
+            <h2 data-i18n="toolFeatures">Tool Features</h2>
             <ul>
-                <li data-i18n="feature1">支持有限小数转分数（如 0.75 → 3/4）</li>
-                <li data-i18n="feature2">支持循环小数转分数（如 0.(3) → 1/3）</li>
-                <li data-i18n="feature3">支持负数小数转换（如 -0.25 → -1/4）</li>
-                <li data-i18n="feature4">自动化简分数到最简形式</li>
-                <li data-i18n="feature5">详细步骤演示，帮助理解转换原理</li>
-                <li data-i18n="feature6">适合课堂教学、家庭辅导、自主学习</li>
+                <li data-i18n="feature1">Supports finite decimal to fraction conversion (e.g., 0.75 → 3/4)</li>
+                <li data-i18n="feature2">Supports repeating decimal to fraction conversion (e.g., 0.(3) → 1/3)</li>
+                <li data-i18n="feature3">Supports negative decimal conversion (e.g., -0.25 → -1/4)</li>
+                <li data-i18n="feature4">Automatically simplifies fractions to lowest terms</li>
+                <li data-i18n="feature5">Detailed step-by-step demonstration to help understand conversion principles</li>
+                <li data-i18n="feature6">Suitable for classroom teaching, home tutoring, and self-study</li>
             </ul>
         </section>
 
         <section>
-            <h2 data-i18n="usage_title">使用方法</h2>
+            <h2 data-i18n="usage_title">How to Use</h2>
             <ol>
-                <li data-i18n="usage_step1">在输入框中输入要转换的<strong>小数</strong>（支持负数）</li>
-                <li data-i18n="usage_step2">选择转换方法或使用<strong>自动识别</strong></li>
-                <li data-i18n="usage_step3">点击<strong>生成</strong>按钮开始转换演示</li>
-                <li data-i18n="usage_step4">使用<em>下一步</em>或<em>上一步</em>按钮查看详细转换过程</li>
-                <li data-i18n="usage_step5">点击<em>重新开始</em>可清空数据并重新操作</li>
+                <li data-i18n="usage_step1">Enter the <strong>decimal</strong> to convert in the input box (negative numbers supported)</li>
+                <li data-i18n="usage_step2">Select conversion method or use <strong>automatic recognition</strong></li>
+                <li data-i18n="usage_step3">Click the <strong>Generate</strong> button to start the conversion demonstration</li>
+                <li data-i18n="usage_step4">Use <em>Next Step</em> or <em>Previous Step</em> buttons to view detailed conversion process</li>
+                <li data-i18n="usage_step5">Click <em>Restart</em> to clear data and start over</li>
             </ol>
         </section>
 
@@ -183,9 +183,7 @@
         </section>
     </main>
 
-    <footer>
-        <p data-i18n="footer_text">© 2025 小数转分数演示工具 | 数学学习与教学辅助平台</p>
-    </footer>
+    
     
     <script src="languages.js"></script>
     <script src="decimal-to-fraction.js"></script>
