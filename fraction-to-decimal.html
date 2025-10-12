@@ -53,12 +53,27 @@
                 <input type="number" id="decimals" data-i18n="decimalsPlaceholder" value="2" min="0" max="12">
             </div>
             <div class="button-group">
+                <!-- 仅保留“生成”在上半区 -->
                 <button id="generateBtn" class="btn btn-primary" data-i18n="generate">Generate</button>
-                <button id="nextBtn" class="btn btn-secondary" data-i18n="nextStep" disabled>Next Step</button>
-                <button id="prevBtn" class="btn btn-secondary" data-i18n="prevStep" disabled>Previous Step</button>
-                <button id="restartBtn" class="btn btn-secondary" data-i18n="restart" disabled>Restart</button>
             </div>
         </div>
+
+        <!-- 上半：即时结果展示 -->
+        <section class="result-summary" id="resultSummary" aria-live="polite" style="background:#fff;border-radius:12px;box-shadow:0 4px 6px rgba(0,0,0,.06);padding:16px 20px;margin:20px 0;">
+          <div class="headline" data-i18n="instantResult" style="font-size:1.1rem;font-weight:600;margin-bottom:8px;">Result</div>
+          <div class="result-kv" style="display:grid;grid-template-columns:160px 1fr;gap:8px;margin-top:8px;">
+            <div class="label" style="color:#6b7280;" data-i18n="expr_label">Expression</div>
+            <div id="resultExpression">—</div>
+            <div class="label" style="color:#6b7280;" data-i18n="decimal_pretty_label">Decimal (pretty)</div>
+            <div id="resultDecimalPretty">—</div>
+            <div class="label" style="color:#6b7280;" data-i18n="decimal_ellipsis_label">Decimal (ellipsis)</div>
+            <div id="resultDecimalEllipsis">—</div>
+            <div class="label" style="color:#6b7280;" data-i18n="percentage_label">Percentage</div>
+            <div id="resultPercentage">—</div>
+            <div class="label" style="color:#6b7280;" data-i18n="type_label">Type</div>
+            <div id="resultType">—</div>
+          </div>
+        </section>
 
         <div class="error-message" id="errorMessage" style="display: none;"></div>
 
@@ -72,6 +87,13 @@
                         <!-- Dynamically generated explanation content -->
                     </div>
                 </div>
+            </div>
+
+            <!-- 下半：演示相关按钮 -->
+            <div class="button-group demo-controls" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;">
+                <button id="nextBtn" class="btn btn-secondary" data-i18n="nextStep" disabled>Next Step</button>
+                <button id="prevBtn" class="btn btn-secondary" data-i18n="prevStep" disabled>Previous Step</button>
+                <button id="restartBtn" class="btn btn-secondary" data-i18n="restart" disabled>Restart</button>
             </div>
         </div>
     </div>

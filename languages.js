@@ -191,6 +191,15 @@ const languages = {
             js_cannot_simplify: '无法进一步化简',
             js_let_x_equal: '设 x =',
             js_equation_separator: '↓',
+            /* Instant Result (Fraction -> Decimal) i18n */
+            instantResult: '即时结果',
+            expr_label: '表达式',
+            decimal_pretty_label: '小数（括号表示）',
+            decimal_ellipsis_label: '小数（省略号）',
+            percentage_label: '百分比',
+            type_label: '类型',
+            type_repeating: '循环小数',
+            type_terminating: '有限小数',
             
             // 小数转分数页面标题
             decimalToFractionTitle: '小数转分数转换器',
@@ -638,7 +647,16 @@ const languages = {
             js_gcd_calculation_generic: 'Greatest common divisor',
             js_cannot_simplify: 'cannot be further simplified',
             js_let_x_equal: 'Let x =',
-            js_equation_separator: '↓'
+            js_equation_separator: '↓',
+            /* Instant Result (Fraction -> Decimal) i18n */
+            instantResult: 'Instant Result',
+            expr_label: 'Expression',
+            decimal_pretty_label: 'Decimal (parentheses)',
+            decimal_ellipsis_label: 'Decimal (ellipsis)',
+            percentage_label: 'Percentage',
+            type_label: 'Type',
+            type_repeating: 'Repeating decimal',
+            type_terminating: 'Terminating decimal'
         }
     },
     'de': {
@@ -908,7 +926,16 @@ const languages = {
             js_gcd_result: 'Der {gcd_text} von {num1} und {num2} ist 1, {cannot_simplify}.',
             js_step_by_step_process: 'Schrittweise Vereinfachung:',
             js_explanation: 'Erklärung',
-            js_incomplete_parentheses: 'Klammern unvollständig, bitte Eingabeformat überprüfen'
+            js_incomplete_parentheses: 'Klammern unvollständig, bitte Eingabeformat überprüfen',
+            /* Instant Result (Fraction -> Decimal) i18n */
+            instantResult: 'Instantanes Ergebnis',
+            expr_label: 'Ausdruck',
+            decimal_pretty_label: 'Dezimal (Klammern)',
+            decimal_ellipsis_label: 'Dezimal (Auslassungspunkte)',
+            percentage_label: 'Prozentsatz',
+            type_label: 'Typ',
+            type_repeating: 'Periodische Dezimalzahl',
+            type_terminating: 'Endliche Dezimalzahl'
 
         }
     },
@@ -1179,7 +1206,16 @@ const languages = {
             js_step_divisible: 'Étape {step} : {num} et {den} sont tous deux divisibles par {divisor}, résultat {result_num}/{result_den}',
             js_simplify_explanation: 'Diviser le numérateur et le dénominateur par des nombres inférieurs à 10 jusqu\'à ce qu\'ils ne puissent être divisés que par 1',
             js_gcd_result: 'Le {gcd_text} de {num1} et {num2} est 1, {cannot_simplify}.',
-            js_incomplete_parentheses: 'Parenthèses incomplètes, veuillez vérifier le format de saisie'
+            js_incomplete_parentheses: 'Parenthèses incomplètes, veuillez vérifier le format de saisie',
+            /* Instant Result (Fraction -> Decimal) i18n */
+            instantResult: 'Résultat instantané',
+            expr_label: 'Expression',
+            decimal_pretty_label: 'Décimal (parenthèses)',
+            decimal_ellipsis_label: 'Décimal (points de suspension)',
+            percentage_label: 'Pourcentage',
+            type_label: 'Type',
+            type_repeating: 'Décimal périodique',
+            type_terminating: 'Décimal fini'
 
         }
     },
@@ -1457,7 +1493,16 @@ const languages = {
             js_step_divisible: 'ステップ{step}: {num}と{den}は両方とも{divisor}で割り切れるため、結果は{result_num}/{result_den}になります',
             js_simplify_explanation: '分子と分母を10以下の数字で、1以外では割れなくなるまで割ります',
             js_gcd_result: '{num1}と{num2}の{gcd_text}は1なので、{cannot_simplify}。',
-            js_incomplete_parentheses: '括弧が不完全です。入力形式を確認してください'
+            js_incomplete_parentheses: '括弧が不完全です。入力形式を確認してください',
+            /* Instant Result (Fraction -> Decimal) i18n */
+            instantResult: '即時結果',
+            expr_label: '表式',
+            decimal_pretty_label: '小数（括弧表記）',
+            decimal_ellipsis_label: '小数（省略記号）',
+            percentage_label: 'パーセンテージ',
+            type_label: '種類',
+            type_repeating: '循環小数',
+            type_terminating: '有限小数'
 
         }
     },
@@ -1725,7 +1770,16 @@ const languages = {
             js_gcd_calculation_generic: 'Máximo divisor comum',
             js_cannot_simplify: 'não pode ser simplificado mais',
             js_let_x_equal: 'Seja x =',
-            js_equation_separator: '↓'
+            js_equation_separator: '↓',
+            /* Instant Result (Fraction -> Decimal) i18n */
+            instantResult: 'Resultado instantâneo',
+            expr_label: 'Expressão',
+            decimal_pretty_label: 'Decimal (parênteses)',
+            decimal_ellipsis_label: 'Decimal (reticências)',
+            percentage_label: 'Porcentagem',
+            type_label: 'Tipo',
+            type_repeating: 'Decimal periódico',
+            type_terminating: 'Decimal finito'
 
         }
     },
@@ -1993,7 +2047,16 @@ const languages = {
             js_gcd_calculation_generic: 'Наибольший общий делитель',
             js_cannot_simplify: 'нельзя больше сократить',
             js_let_x_equal: 'Пусть x =',
-            js_equation_separator: '↓'
+            js_equation_separator: '↓',
+            /* Instant Result (Fraction -> Decimal) i18n */
+            instantResult: 'Мгновенный результат',
+            expr_label: 'Выражение',
+            decimal_pretty_label: 'Десятичное (скобки)',
+            decimal_ellipsis_label: 'Десятичное (многоточие)',
+            percentage_label: 'Процент',
+            type_label: 'Тип',
+            type_repeating: 'Периодическая десятичная',
+            type_terminating: 'Конечная десятичная'
 
         }
     },
@@ -2261,7 +2324,16 @@ const languages = {
             js_gcd_calculation_generic: 'Máximo común divisor',
             js_cannot_simplify: 'no se puede simplificar más',
             js_let_x_equal: 'Sea x =',
-            js_equation_separator: '↓'
+            js_equation_separator: '↓',
+            /* Instant Result (Fraction -> Decimal) i18n */
+            instantResult: 'Resultado instantáneo',
+            expr_label: 'Expresión',
+            decimal_pretty_label: 'Decimal (paréntesis)',
+            decimal_ellipsis_label: 'Decimal (elipsis)',
+            percentage_label: 'Porcentaje',
+            type_label: 'Tipo',
+            type_repeating: 'Decimal periódico',
+            type_terminating: 'Decimal finito'
 
         }
     }
@@ -2378,9 +2450,14 @@ class LanguageManager {
             window.decimalToFractionDemo.updateExplanation();
         }
         
-        // 更新分数转小数工具的说明面板
-        if (window.longDivisionDemo && window.longDivisionDemo.updateExplanation) {
-            window.longDivisionDemo.updateExplanation();
+        // 更新分数转小数工具的说明面板与即时结果
+        if (window.longDivisionDemo) {
+            if (window.longDivisionDemo.updateExplanation) {
+                window.longDivisionDemo.updateExplanation();
+            }
+            if (window.longDivisionDemo.updateResultSummary) {
+                window.longDivisionDemo.updateResultSummary();
+            }
         }
     }
 

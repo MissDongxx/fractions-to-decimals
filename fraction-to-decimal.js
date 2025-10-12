@@ -10,6 +10,58 @@ class LongDivisionDemo {
         this.bindEvents();
         this.updateExplanation();
     }
+        // 计算“即时结果”所需表示：pretty/ellipsis/百分比/类型
+    fractionToDecimalPretty(n, d, maxDigits = 150) {
+        const sign = (n < 0) ^ (d < 0) ? '-' : '';
+        n = Math.abs(Number(n)); d = Math.abs(Number(d));
+        if (!d) return { pretty: '—', ellipsis: '—', repeating: false };
+
+        const intPart = Math.floor(n / d);
+        let remainder = n % d;
+        if (remainder === 0) {
+            const v = sign + String(intPart);
+            return { pretty: v, ellipsis: v, repeating: false };
+        }
+        const seen = new Map(); const digits = [];
+        let repIdx = -1;
+        for (let i = 0; remainder !== 0 && i < maxDigits; i++) {
+            if (seen.has(remainder)) { repIdx = seen.get(remainder); break; }
+            seen.set(remainder, digits.length);
+            remainder *= 10;
+            digits.push(Math.floor(remainder / d));
+            remainder %= d;
+        }
+        const base = sign + intPart + '.';
+        if (repIdx === -1) {
+            const dec = digits.join('');
+            return { pretty: base + dec, ellipsis: base + dec, repeating: false };
+        } else {
+            const non = digits.slice(0, repIdx).join('');
+            const rep = digits.slice(repIdx).join('');
+            const pretty = base + (non ? non : '') + `(${rep})`;
+            const ellipsis = base + (non ? non : '') + rep.repeat(Math.ceil(12/rep.length)).slice(0,12) + '...';
+            return { pretty, ellipsis, repeating: true };
+        }
+    }
+
+    updateResultSummary() {
+        const exprEl = document.getElementById('resultExpression');
+        const prettyEl = document.getElementById('resultDecimalPretty');
+        const ellipsisEl = document.getElementById('resultDecimalEllipsis');
+        const pctEl = document.getElementById('resultPercentage');
+        const typeEl = document.getElementById('resultType');
+
+        if (!exprEl) return;
+
+        const n = this.dividend;
+        const d = this.divisor;
+        const { pretty, ellipsis, repeating } = this.fractionToDecimalPretty(n, d, Math.max(50, Number(this.decimals)||0));
+        exprEl.textContent = `${n}/${d}`;
+        prettyEl.textContent = pretty;
+        ellipsisEl.textContent = ellipsis;
+        pctEl.textContent = ((Number(d) === 0) ? '—' : ((Number(n)/Number(d))*100).toFixed(2) + '%');
+        typeEl.textContent = repeating ? this.getTranslation('type_repeating') : this.getTranslation('type_terminating');
+    }
     
     initializeElements() {
         this.dividendInput = document.getElementById('dividend');
@@ -102,8 +154,29 @@ class LongDivisionDemo {
     hideError() {
         this.errorMessage.classList.remove('show');
     }
+
+    // 重置演示区（清空画布/说明，禁用控制按钮）
+    resetDemo() {
+        // 清空步骤与状态
+        this.steps = [];
+        this.currentStep = -1;
+
+        // 清空画布
+        if (this.longDivision) this.longDivision.innerHTML = '';
+        if (this.explanationContent) this.explanationContent.innerHTML = '';
+
+        // 禁用按钮
+        if (this.nextBtn) this.nextBtn.disabled = true;
+        if (this.prevBtn) this.prevBtn.disabled = true;
+        if (this.restartBtn) this.restartBtn.disabled = true;
+
+        // 隐藏错误
+        this.hideError();
+    }
     
     generate() {
+        // 先重置演示区
+        this.resetDemo();
         this.hideError();
         
         // 获取输入值
@@ -151,6 +224,9 @@ class LongDivisionDemo {
         
         // 更新说明面板
         this.updateExplanation();
+
+        // 刷新“即时结果”区
+        this.updateResultSummary();
     }
     
     computeDecimalDivisionSteps() {
@@ -876,4 +952,27 @@ class LongDivisionDemo {
 document.addEventListener('DOMContentLoaded', () => {
     // 创建全局实例，用于语言切换时更新说明面板
     window.longDivisionDemo = new LongDivisionDemo();
+
+    // 解析 URL 查询参数，支持别名，并在提供分子/分母时自动生成
+    try {
+        const params = new URLSearchParams(window.location.search);
+        const numParam = params.get('numerator') ?? params.get('n') ?? params.get('dividend');
+        const denParam = params.get('denominator') ?? params.get('d') ?? params.get('divisor');
+        const decParam = params.get('decimals') ?? params.get('precision');
+
+        const dividendInput = document.getElementById('dividend');
+        const divisorInput = document.getElementById('divisor');
+        const decimalsInput = document.getElementById('decimals');
+
+        if (numParam != null && dividendInput) dividendInput.value = numParam;
+        if (denParam != null && divisorInput) divisorInput.value = denParam;
+        if (decParam != null && decimalsInput) decimalsInput.value = decParam;
+
+        if (numParam != null && denParam != null && window.longDivisionDemo && typeof window.longDivisionDemo.generate === 'function') {
+            window.longDivisionDemo.generate();
+        }
+    } catch (e) {
+        // 忽略解析异常，保持页面正常加载
+        console.warn('Query param parse error:', e);
+    }
 });
