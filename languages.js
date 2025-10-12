@@ -353,7 +353,7 @@ const languages = {
             faqQ2: '这个工具适合哪些人？',
             faqA2: '适合小学生、中学生、教师、家长，或任何想要复习和掌握长除法的人。',
             faqQ3: '如何验证计算结果？',
-            faqA3: '您可以查看我们的小数转分数转换器来验证结果分数是否与您输入的被除数和除数一致。我们支持循环小数和有限小数的计算。',
+            faqA3: '您可以查看我们的 <a href="https://fractionstodecimals.com/decimal-to-fraction.html" target="_blank" rel="noopener">小数转分数转换器</a> 来验证结果分数是否与您输入的被除数和除数一致。我们支持循环小数和有限小数的计算。',
             copyright: '© 2025 交互式长除法演示工具 | 数学学习与教学辅助平台'
         }
     },
@@ -503,7 +503,7 @@ const languages = {
             faqQ2: 'Who is this tool suitable for?',
             faqA2: 'Suitable for elementary students, middle school students, teachers, parents, or anyone who wants to review and master long division.',
             faqQ3: 'How to verify the Fraction To Decimal results？',
-            faqA3: 'ou can see our Decimal to Fraction Converter to verify that the resulting fraction is consistent with the dividend and divisor you entered. We support calculations of recurring and finite decimals.',
+            faqA3: 'You can see our <a href="https://fractionstodecimals.com/decimal-to-fraction.html" target="_blank" rel="noopener">Decimal to Fraction Converter</a> to verify that the resulting fraction is consistent with the dividend and divisor you entered. We support calculations of recurring and finite decimals.',
             copyright: '© 2025 Interactive Long Division Demo | Mathematics Learning & Teaching Platform',
             
             // 小数转分数页面专用翻译
@@ -783,7 +783,7 @@ const languages = {
             faqQ2: 'Für wen ist dieses Werkzeug geeignet?',
             faqA2: 'Geeignet für Grundschüler, Mittelschüler, Lehrer, Eltern oder jeden, der die schriftliche Division wiederholen und meistern möchte.',
             faqQ3: 'Wie kann man die Ergebnisse der Bruch-zu-Dezimal-Umwandlung überprüfen?',
-            faqA3: 'Sie können unseren Dezimal-zu-Bruch-Konverter verwenden, um zu überprüfen, ob der resultierende Bruch mit dem von Ihnen eingegebenen Dividenden und Divisor übereinstimmt. Wir unterstützen Berechnungen von periodischen und endlichen Dezimalzahlen.',
+            faqA3: 'Sie können unseren <a href="https://fractionstodecimals.com/decimal-to-fraction.html" target="_blank" rel="noopener">Dezimal-zu-Bruch-Konverter</a> verwenden, um zu überprüfen, ob der resultierende Bruch mit dem von Ihnen eingegebenen Dividenden und Divisor übereinstimmt. Wir unterstützen Berechnungen von periodischen und endlichen Dezimalzahlen.',
             copyright: '© 2025 Interaktive Schriftliche Division Demo | Mathematik Lern- & Lehrplattform',
         
             decimal_to_fraction_title: 'Dezimal-zu-Bruch-Tool',
@@ -1063,7 +1063,7 @@ const languages = {
             faqQ2: 'À qui cet outil est-il destiné?',
             faqA2: 'Convient aux élèves du primaire, aux collégiens, aux enseignants, aux parents ou à toute personne qui souhaite revoir et maîtriser la division longue.',
             faqQ3: 'Comment vérifier les résultats de la conversion de fraction en décimal?',
-            faqA3: 'Vous pouvez consulter notre convertisseur de décimal en fraction pour vérifier que la fraction résultante est cohérente avec le dividende et le diviseur que vous avez saisis. Nous prenons en charge les calculs de décimales récurrentes et finies.',
+            faqA3: 'Vous pouvez consulter notre <a href="https://fractionstodecimals.com/decimal-to-fraction.html" target="_blank" rel="noopener">convertisseur de décimal en fraction</a> pour vérifier que la fraction résultante est cohérente avec le dividende et le diviseur que vous avez saisis. Nous prenons en charge les calculs de décimales récurrentes et finies.',
             copyright: '© 2025 Démonstration Interactive de Division Longue | Plateforme d\'Apprentissage et d\'Enseignement des Mathématiques',
                     
             decimal_to_fraction_title: 'Outil Décimal en Fraction',
@@ -1343,7 +1343,7 @@ const languages = {
             faqQ2: 'このツールは誰に適していますか？',
             faqA2: '小学生、中学生、教師、保護者、または筆算を見直して習得したい人に適しています。',
             faqQ3: '分数から小数への変換結果を検証するにはどうすればよいですか？',
-            faqA3: '当社の「小数から分数への変換ツール」を使用すると、結果の分数が入力した被除数および除数と一致していることを確認できます。当社は循環小数と有限小数の計算をサポートしています。',
+            faqA3: '当社の <a href="https://fractionstodecimals.com/decimal-to-fraction.html" target="_blank" rel="noopener">小数から分数への変換ツール</a> を使用すると、結果の分数が入力した被除数および除数と一致していることを確認できます。当社は循環小数と有限小数の計算をサポートしています。',
             copyright: '© 2025 インタラクティブ筆算割り算デモ | 数学学習・教育プラットフォーム',
                     
             decimal_to_fraction_title: '小数から分数への変換ツール',
@@ -1628,7 +1628,7 @@ const languages = {
             faqQ2: 'Para quem esta ferramenta é adequada?',
             faqA2: 'Adequado para estudantes do ensino fundamental, ensino médio, professores, pais, ou qualquer pessoa que queira revisar e dominar a divisão longa.',
             faqQ3: 'Como verificar os resultados da Fração para Decimal?',
-            faqA3: 'Você pode usar nosso Conversor de Decimal para Fração para verificar se a fração resultante é consistente com o dividendo e o divisor que você inseriu. Nós suportamos cálculos de decimais recorrentes e finitos.',
+            faqA3: 'Você pode usar nosso <a href="https://fractionstodecimals.com/decimal-to-fraction.html" target="_blank" rel="noopener">Conversor de Decimal para Fração</a> para verificar se a fração resultante é consistente com o dividendo e o divisor que você inseriu. Nós suportamos cálculos de decimais recorrentes e finitos.',
             copyright: '© 2025 Demonstração Interativa de Divisão Longa | Plataforma de Aprendizagem e Ensino de Matemática',
                         
             js_numerator_explanation: 'Numerador:',
@@ -1905,7 +1905,7 @@ const languages = {
             faqQ2: 'Для кого подходит этот инструмент?',
             faqA2: 'Подходит для учеников начальной и средней школы, учителей, родителей и всех, кто хочет повторить и освоить деление в столбик.',
             faqQ3: 'Как проверить результаты преобразования дроби в десятичную?',
-            faqA3: 'Вы можете использовать наш конвертер десятичных дробей в обыкновенные, чтобы убедиться, что полученная дробь соответствует введенным вами делимому и делителю. Мы поддерживаем вычисления для периодических и конечных десятичных дробей.',
+            faqA3: 'Вы можете использовать наш <a href="https://fractionstodecimals.com/decimal-to-fraction.html" target="_blank" rel="noopener">конвертер десятичных дробей в обыкновенные</a>, чтобы убедиться, что полученная дробь соответствует введенным вами делимому и делителю. Мы поддерживаем вычисления для периодических и конечных десятичных дробей.',
             copyright: '© 2025 Интерактивная Демонстрация Деления в Столбик | Платформа Изучения и Преподавания Математики',
                         
 
@@ -2182,7 +2182,7 @@ const languages = {
             faqQ2: '¿Para quién es adecuada esta herramienta?',
             faqA2: 'Adecuada para estudiantes de primaria, secundaria, profesores, padres o cualquier persona que quiera repasar y dominar la división larga.',
             faqQ3: '¿Cómo verificar los resultados de Fracción a Decimal?',
-            faqA3: 'Puede usar nuestro Convertidor de Decimal a Fracción para verificar que la fracción resultante sea consistente con el dividendo y el divisor que ingresó. Admitimos cálculos de decimales periódicos y finitos.',
+            faqA3: 'Puede usar nuestro <a href="https://fractionstodecimals.com/decimal-to-fraction.html" target="_blank" rel="noopener">Convertidor de Decimal a Fracción</a> para verificar que la fracción resultante sea consistente con el dividendo y el divisor que ingresó. Admitimos cálculos de decimales periódicos y finitos.',
             copyright: '© 2025 Demostración Interactiva de División Larga | Plataforma de Aprendizaje y Enseñanza de Matemáticas',
 
             js_numerator_explanation: 'Numerador:',
