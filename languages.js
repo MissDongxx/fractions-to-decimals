@@ -112,18 +112,8 @@ const languages = {
             
             common_decimals_title: '常见小数转分数对照表',
             common_finite_title: '常见有限小数',
-            finite_example1: '0.5 = 1/2',
-            finite_example2: '0.25 = 1/4',
-            finite_example3: '0.75 = 3/4',
-            finite_example4: '0.2 = 1/5',
-            finite_example5: '0.125 = 1/8',
             
             common_repeating_title: '常见循环小数',
-            repeating_example1: '0.(3) = 1/3',
-            repeating_example2: '0.(6) = 2/3',
-            repeating_example3: '0.(142857) = 1/7',
-            repeating_example4: '0.1(6) = 1/6',
-            repeating_example5: '0.(09) = 1/11',
             
             input_format_title: '输入格式说明',
             supported_formats_title: '支持的输入格式：',
@@ -575,18 +565,8 @@ const languages = {
             
             common_decimals_title: 'Common Decimal to Fraction Reference Table',
             common_finite_title: 'Common Finite Decimals',
-            finite_example1: '0.5 = 1/2',
-            finite_example2: '0.25 = 1/4',
-            finite_example3: '0.75 = 3/4',
-            finite_example4: '0.2 = 1/5',
-            finite_example5: '0.125 = 1/8',
             
             common_repeating_title: 'Common Repeating Decimals',
-            repeating_example1: '0.(3) = 1/3',
-            repeating_example2: '0.(6) = 2/3',
-            repeating_example3: '0.(142857) = 1/7',
-            repeating_example4: '0.1(6) = 1/6',
-            repeating_example5: '0.(09) = 1/11',
             
             input_format_title: 'Input Format Instructions',
             supported_formats_title: 'Supported Input Formats:',
@@ -847,18 +827,8 @@ const languages = {
 
             common_decimals_title: 'Häufige Dezimal-Bruch-Umwandlungen',
             common_finite_title: 'Häufige endliche Dezimalzahlen',
-            finite_example1: '0,5 = 1/2',
-            finite_example2: '0,25 = 1/4',
-            finite_example3: '0,75 = 3/4',
-            finite_example4: '0,2 = 1/5',
-            finite_example5: '0,125 = 1/8',
 
             common_repeating_title: 'Häufige periodische Dezimalzahlen',
-            repeating_example1: '0.(3) = 1/3',
-            repeating_example2: '0.(6) = 2/3',
-            repeating_example3: '0.(142857) = 1/7',
-            repeating_example4: '0.1(6) = 1/6',
-            repeating_example5: '0.(09) = 1/11',
 
             input_format_title: 'Eingabeformat-Anleitung',
             supported_formats_title: 'Unterstützte Eingabeformate:',
@@ -1132,18 +1102,8 @@ const languages = {
 
             common_decimals_title: 'Tableau de référence des conversions',
             common_finite_title: 'Décimaux finis courants',
-            finite_example1: '0.5 = 1/2',
-            finite_example2: '0.25 = 1/4',
-            finite_example3: '0.75 = 3/4',
-            finite_example4: '0.2 = 1/5',
-            finite_example5: '0.125 = 1/8',
 
             common_repeating_title: 'Décimaux périodiques courants',
-            repeating_example1: '0.(3) = 1/3',
-            repeating_example2: '0.(6) = 2/3',
-            repeating_example3: '0.(142857) = 1/7',
-            repeating_example4: '0.1(6) = 1/6',
-            repeating_example5: '0.(09) = 1/11',
 
             input_format_title: 'Instructions de format de saisie',
             supported_formats_title: 'Formats pris en charge :',
@@ -1416,18 +1376,8 @@ const languages = {
 
             common_decimals_title: '小数から分数への換算表（参考）',
             common_finite_title: 'よく使われる有限小数',
-            finite_example1: '0.5 = 1/2',
-            finite_example2: '0.25 = 1/4',
-            finite_example3: '0.75 = 3/4',
-            finite_example4: '0.2 = 1/5',
-            finite_example5: '0.125 = 1/8',
 
             common_repeating_title: 'よく使われる循環小数',
-            repeating_example1: '0.(3) = 1/3',
-            repeating_example2: '0.(6) = 2/3',
-            repeating_example3: '0.(142857) = 1/7',
-            repeating_example4: '0.1(6) = 1/6',
-            repeating_example5: '0.(09) = 1/11',
 
             input_format_title: '入力フォーマットの説明',
             supported_formats_title: '対応する入力形式：',
@@ -1715,18 +1665,8 @@ const languages = {
 
             common_decimals_title: 'Tabela de Referência de Conversão de Decimais Comuns',
             common_finite_title: 'Decimais Finitos Comuns',
-            finite_example1: '0.5 = 1/2',
-            finite_example2: '0.25 = 1/4',
-            finite_example3: '0.75 = 3/4',
-            finite_example4: '0.2 = 1/5',
-            finite_example5: '0.125 = 1/8',
 
             common_repeating_title: 'Decimais Periódicos Comuns',
-            repeating_example1: '0.(3) = 1/3',
-            repeating_example2: '0.(6) = 2/3',
-            repeating_example3: '0.(142857) = 1/7',
-            repeating_example4: '0.1(6) = 1/6',
-            repeating_example5: '0.(09) = 1/11',
 
             input_format_title: 'Instruções de Formato de Entrada',
             supported_formats_title: 'Formatos de Entrada Suportados:',
@@ -1996,18 +1936,9 @@ const languages = {
 
             common_decimals_title: 'Таблица преобразования распространённых десятичных чисел в дроби',
             common_finite_title: 'Распространённые конечные десятичные числа',
-            finite_example1: '0.5 = 1/2',
-            finite_example2: '0.25 = 1/4',
-            finite_example3: '0.75 = 3/4',
-            finite_example4: '0.2 = 1/5',
-            finite_example5: '0.125 = 1/8',
 
             common_repeating_title: 'Распространённые периодические десятичные числа',
-            repeating_example1: '0.(3) = 1/3',
-            repeating_example2: '0.(6) = 2/3',
-            repeating_example3: '0.(142857) = 1/7',
-            repeating_example4: '0.1(6) = 1/6',
-            repeating_example5: '0.(09) = 1/11',
+            
 
             input_format_title: 'Инструкции по формату ввода',
             supported_formats_title: 'Поддерживаемые форматы ввода:',
@@ -2277,18 +2208,8 @@ const languages = {
 
             common_decimals_title: 'Tabla de Conversión de Decimales Comunes',
             common_finite_title: 'Decimales Finitos Comunes',
-            finite_example1: '0.5 = 1/2',
-            finite_example2: '0.25 = 1/4',
-            finite_example3: '0.75 = 3/4',
-            finite_example4: '0.2 = 1/5',
-            finite_example5: '0.125 = 1/8',
 
             common_repeating_title: 'Decimales Periódicos Comunes',
-            repeating_example1: '0.(3) = 1/3',
-            repeating_example2: '0.(6) = 2/3',
-            repeating_example3: '0.(142857) = 1/7',
-            repeating_example4: '0.1(6) = 1/6',
-            repeating_example5: '0.(09) = 1/11',
 
             input_format_title: 'Instrucciones de Formato de Entrada',
             supported_formats_title: 'Formatos de Entrada Admitidos:',
