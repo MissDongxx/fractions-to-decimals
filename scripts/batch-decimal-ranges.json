@@ -1,0 +1,13 @@
+{
+  "terminating": [
+    { "integer": 0, "decimals": 1, "start": 0.1, "end": 0.9, "step": 0.1, "includeZero": false },
+    { "integer": 0, "decimals": 2, "start": 0.01, "end": 0.99, "step": 0.01 },
+    { "integer": 1, "decimals": 1, "start": 1.1, "end": 1.9, "step": 0.1 },
+    { "integer": 2, "decimals": 1, "start": 2.1, "end": 2.9, "step": 0.1 },
+    { "integer": 3, "decimals": 1, "start": 3.1, "end": 3.9, "step": 0.1 }
+  ],
+  "repeating": [
+    "0.(3)", "0.(6)", "0.(1)", "0.(2)", "0.(4)", "0.(5)", "0.(7)", "0.(8)",
+    "0.1(6)", "0.83(3)", "0.(142857)"
+  ]
+}

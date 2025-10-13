@@ -1,0 +1,4 @@
+/* decimal-to-fraction 宽屏按钮右距 */
+.button-group {
+    margin-right: 20px;
+}

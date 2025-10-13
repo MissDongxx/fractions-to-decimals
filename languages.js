@@ -200,6 +200,8 @@ const languages = {
             type_label: '类型',
             type_repeating: '循环小数',
             type_terminating: '有限小数',
+            fraction_result_label: '分数（最简）',
+            fraction_raw_label: '分数（原式）',
             
             // 小数转分数页面标题
             decimalToFractionTitle: '小数转分数转换器',
@@ -346,6 +348,8 @@ const languages = {
             TurnIntoDivisionDesc4: '分母（分数的下方数字）成为除数（用来除的数）。',
             TurnIntoDivisionDesc5: '分数线被除号（÷）替代。',
             TurnIntoDivisionDesc6: '例如，分数3/4可以写成除法问题3÷4。这是理解分数所代表含义的核心概念——整体的一部分。',
+            refTableTitle: '常见分数转小数对照表',
+            refTableDesc: '下面列出了常见分数及其对应的小数。点击任意分数可查看详细的长除法演示页面。',
             
             faq: '常见问题 (FAQ)',
             faqQ1: '小学生学习长除法时常见困难是什么？',
@@ -472,6 +476,8 @@ const languages = {
             TurnIntoDivisionDesc4: 'The denominator (the bottom number of the fraction) becomes the divisor (the number you are dividing by).',
             TurnIntoDivisionDesc5: 'The fraction bar is replaced with a division sign (÷).',
             TurnIntoDivisionDesc6: 'For example, the fraction 3/4 can be written as the division problem 3÷4. This is a core concept in understanding what fractions represent—a part of a whole.',
+            refTableTitle: 'Common Fraction To Decimal Reference Table',
+            refTableDesc: 'Here are some common fractions and their decimal equivalents. Click a fraction to see the detailed long-tail page.',
             whatIsLongDivision: 'What is Long Division?',
             longDivisionDesc1: 'Long division is a step-by-step division calculation method, commonly used for large numbers or decimal operations. Through repeated operations of "quotient, remainder, subtraction", it helps students gradually understand the logic of division, rather than simply memorizing formulas.',
             longDivisionDesc2: 'In elementary mathematics learning, long division is an important advanced step that lays the foundation for fraction operations, decimal operations, and algebra.',
@@ -519,7 +525,7 @@ const languages = {
             repeating_option: 'Repeating Decimal',
             generate_button: 'Generate',
             next_button: 'Next Step',
-            prev_button: 'Previous Step',
+            prev_button: 'Prev Step',
             
             what_is_decimal_to_fraction_title: 'What is Decimal to Fraction Conversion?',
             what_is_decimal_to_fraction_p1: 'Decimal to fraction conversion is a mathematical operation that converts decimal numbers into fraction form. This process helps us better understand the nature of numbers, especially the representation of rational numbers.',
@@ -656,7 +662,9 @@ const languages = {
             percentage_label: 'Percentage',
             type_label: 'Type',
             type_repeating: 'Repeating decimal',
-            type_terminating: 'Terminating decimal'
+            type_terminating: 'Terminating decimal',
+            fraction_result_label: 'Fraction (simplified)',
+            fraction_raw_label: 'Fraction (raw)',
         }
     },
     'de': {
@@ -751,6 +759,8 @@ const languages = {
             TurnIntoDivisionDesc4: 'Der Nenner (die untere Zahl des Bruchs) wird zum Divisor (die Zahl, durch die du teilst).',
             TurnIntoDivisionDesc5: 'Der Bruchstrich wird durch ein Divisionszeichen (÷) ersetzt.',
             TurnIntoDivisionDesc6: 'Zum Beispiel kann der Bruch 3/4 als die Divisionsaufgabe 3÷4 geschrieben werden. Dies ist ein grundlegendes Konzept, um zu verstehen, was Brüche darstellen—einen Teil eines Ganzen.',
+            refTableTitle: 'Gängige Brüche-zu-Dezimal-Referenztabelle',
+            refTableDesc: 'Hier sind einige gängige Brüche und ihre Dezimalwerte. Klicken Sie auf einen Bruch, um die detaillierte Seite zur schriftlichen Division zu sehen.',
 
             whatIsLongDivision: 'Was ist schriftliche Division?',
             longDivisionDesc1: 'Die schriftliche Division ist eine schrittweise Divisionsmethode, die üblicherweise für große Zahlen oder Dezimaloperationen verwendet wird. Durch wiederholte Operationen von "Quotient, Rest, Subtraktion" hilft sie Schülern, die Logik der Division schrittweise zu verstehen, anstatt einfach Formeln auswendig zu lernen.',
@@ -935,7 +945,9 @@ const languages = {
             percentage_label: 'Prozentsatz',
             type_label: 'Typ',
             type_repeating: 'Periodische Dezimalzahl',
-            type_terminating: 'Endliche Dezimalzahl'
+            type_terminating: 'Endliche Dezimalzahl',
+            fraction_result_label: 'Bruch (vereinfacht)',
+            fraction_raw_label: 'Bruch (roh)',
 
         }
     },
@@ -1031,6 +1043,8 @@ const languages = {
             TurnIntoDivisionDesc4: 'Le dénominateur (le nombre du bas de la fraction) devient le diviseur (le nombre par lequel vous divisez).',
             TurnIntoDivisionDesc5: 'La barre de fraction est remplacée par un signe de division (÷).',
             TurnIntoDivisionDesc6: 'Par exemple, la fraction 3/4 peut être écrite comme le problème de division 3÷4. C’est un concept fondamental pour comprendre ce que les fractions représentent—une partie d’un tout.',
+            refTableTitle: 'Table de référence des conversions de fractions en décimales courantes',
+            refTableDesc: 'Voici quelques fractions courantes et leurs équivalents décimaux. Cliquez sur une fraction pour voir la page détaillée de la division longue.',
 
             whatIsLongDivision: 'Qu\'est-ce que la division longue ?',
             longDivisionDesc1: 'La division longue est une méthode de calcul de division étape par étape, couramment utilisée pour les grands nombres ou les opérations décimales. Grâce aux opérations répétées de "quotient, reste, soustraction", elle aide les étudiants à comprendre progressivement la logique de la division, plutôt que de simplement mémoriser des formules.',
@@ -1215,7 +1229,9 @@ const languages = {
             percentage_label: 'Pourcentage',
             type_label: 'Type',
             type_repeating: 'Décimal périodique',
-            type_terminating: 'Décimal fini'
+            type_terminating: 'Décimal fini',
+            fraction_result_label: 'Fraction (simplifiée)',
+            fraction_raw_label: 'Fraction (brute)',
 
         }
     },
@@ -1311,6 +1327,8 @@ const languages = {
             TurnIntoDivisionDesc4: '分母（分数の下にある数）が除数（割る数）になります。',
             TurnIntoDivisionDesc5: '分数線は割り算の記号（÷）に置き換えられます。',
             TurnIntoDivisionDesc6: 'たとえば、分数3/4は、割り算の問題3÷4として書くことができます。これは、分数が全体の一部を表すということを理解するための核となる概念です。',
+            refTableTitle: '分数→小数のよく使われる換算表',
+            refTableDesc: 'よく使われる分数とその小数表記です。各分数をクリックすると、詳しい筆算割り算ページが表示されます。',
 
             whatIsLongDivision: '筆算割り算とは？',
             longDivisionDesc1: '筆算割り算は段階的な除法計算方法で、通常大きな数や小数の演算に使用されます。「商、余り、減法」の反復操作を通じて、学生が公式を単純に暗記するのではなく、除法の論理を段階的に理解できるよう支援します。',
@@ -1502,7 +1520,9 @@ const languages = {
             percentage_label: 'パーセンテージ',
             type_label: '種類',
             type_repeating: '循環小数',
-            type_terminating: '有限小数'
+            type_terminating: '有限小数',
+            fraction_result_label: '分数（最簡）',
+            fraction_raw_label: '分数（未約分）',
 
         }
     },
@@ -1596,6 +1616,8 @@ const languages = {
             TurnIntoDivisionDesc4: 'O denominador (o número de baixo da fração) se torna o divisor (o número pelo qual você está dividindo).',
             TurnIntoDivisionDesc5: 'A barra de fração é substituída por um sinal de divisão (÷).',
             TurnIntoDivisionDesc6: 'Por exemplo, a fração 3/4 pode ser escrita como o problema de divisão 3÷4. Este é um conceito central para entender o que as frações representam—uma parte de um todo.',
+            refTableTitle: 'Tabela de Referência de Fração para Decimal',
+            refTableDesc: 'Aqui estão algumas frações comuns e seus equivalentes decimais. Clique em uma fração para ver a página detalhada de divisão longa.',
 
             whatIsLongDivision: 'O que é divisão longa?',
             longDivisionDesc1: 'A divisão longa é um método de cálculo de divisão passo a passo, comumente usado para números grandes ou operações decimais. Através de operações repetidas de "quociente, resto, subtração", ajuda os estudantes a compreender gradualmente a lógica da divisão, em vez de simplesmente memorizar fórmulas.',
@@ -1779,7 +1801,9 @@ const languages = {
             percentage_label: 'Porcentagem',
             type_label: 'Tipo',
             type_repeating: 'Decimal periódico',
-            type_terminating: 'Decimal finito'
+            type_terminating: 'Decimal finito',
+            fraction_result_label: 'Fração (simplificada)',
+            fraction_raw_label: 'Fração (bruta)',
 
         }
     },
@@ -1873,6 +1897,8 @@ const languages = {
             TurnIntoDivisionDesc4: 'Знаменатель (нижнее число дроби) становится делителем (число, на которое делят).',
             TurnIntoDivisionDesc5: 'Черта дроби заменяется знаком деления (÷).',
             TurnIntoDivisionDesc6: 'Например, дробь 3/4 можно записать как задачу на деление 3÷4. Это основная концепция для понимания того, что представляют собой дроби — часть целого.',
+            refTableTitle: 'Таблица преобразования распространённых дробей в десятичные числа',
+            refTableDesc: 'Здесь представлены распространённые дроби и их десятичные эквиваленты. Нажмите на дробь, чтобы увидеть подробную страницу с делением в столбик.',
 
             whatIsLongDivision: 'Что такое деление в столбик?',
             longDivisionDesc1: 'Деление в столбик - это пошаговый метод вычисления деления, обычно используемый для больших чисел или десятичных операций. Через повторяющиеся операции "частное, остаток, вычитание" он помогает студентам постепенно понять логику деления, а не просто запоминать формулы.',
@@ -2056,7 +2082,9 @@ const languages = {
             percentage_label: 'Процент',
             type_label: 'Тип',
             type_repeating: 'Периодическая десятичная',
-            type_terminating: 'Конечная десятичная'
+            type_terminating: 'Конечная десятичная',
+            fraction_result_label: 'Дробь (упрощенная)',
+            fraction_raw_label: 'Дробь (исходная)',
 
         }
     },
@@ -2150,6 +2178,8 @@ const languages = {
             TurnIntoDivisionDesc4: 'El denominador (el número inferior de la fracción) se convierte en el divisor (el número por el que se divide).',
             TurnIntoDivisionDesc5: 'La barra de fracción se reemplaza con un signo de división (÷).',
             TurnIntoDivisionDesc6: 'Por ejemplo, la fracción 3/4 se puede escribir como el problema de división 3÷4. Este es un concepto central para entender lo que representan las fracciones: una parte de un todo.',
+            refTableTitle: 'Tabla de Referencia de Fracción a Decimal',
+            refTableDesc: 'A continuación se muestran fracciones comunes y sus equivalentes decimales. Haz clic en una fracción para ver la página detallada de división larga.',
 
             whatIsLongDivision: '¿Qué es la división larga?',
             longDivisionDesc1: 'La división larga es un método de cálculo de división paso a paso, comúnmente usado para números grandes u operaciones decimales. A través de operaciones repetidas de "cociente, residuo, sustracción", ayuda a los estudiantes a comprender gradualmente la lógica de la división, en lugar de simplemente memorizar fórmulas.',
@@ -2333,7 +2363,9 @@ const languages = {
             percentage_label: 'Porcentaje',
             type_label: 'Tipo',
             type_repeating: 'Decimal periódico',
-            type_terminating: 'Decimal finito'
+            type_terminating: 'Decimal finito',
+            fraction_result_label: 'Fracción (simplificada)',
+            fraction_raw_label: 'Fracción (sin simplificar)',
 
         }
     }

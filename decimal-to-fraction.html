@@ -47,10 +47,22 @@
 
             <div class="button-group">
                 <button id="generateBtn" class="btn btn-primary" data-i18n="generate_button">Generate</button>
-                <button id="nextBtn" class="btn btn-secondary" disabled data-i18n="next_button">Next Step</button>
-                <button id="prevBtn" class="btn btn-secondary" disabled data-i18n="prev_button">Previous Step</button>
             </div>
         </div>
+
+        <section class="result-summary" id="dfResultSummary" aria-live="polite" style="background:#fff;border-radius:12px;box-shadow:0 4px 6px rgba(0,0,0,.06);padding:16px 20px;margin:20px 0;">
+          <div class="headline" data-i18n="instantResult" style="font-size:1.1rem;font-weight:600;margin-bottom:8px;">Result</div>
+          <div class="result-kv" style="display:grid;grid-template-columns:200px 1fr;gap:8px;margin-top:8px;">
+            <div class="label" style="color:#6b7280;" data-i18n="decimal_label">Decimal</div>
+            <div id="dfResultDecimal">—</div>
+            <div class="label" style="color:#6b7280;" data-i18n="fraction_result_label">Fraction (simplified)</div>
+            <div id="dfResultFractionSimplified">—</div>
+            <div class="label" style="color:#6b7280;" data-i18n="fraction_raw_label">Fraction (raw)</div>
+            <div id="dfResultFractionRaw">—</div>
+            <div class="label" style="color:#6b7280;" data-i18n="type_label">Type</div>
+            <div id="dfResultType">—</div>
+          </div>
+        </section>
 
         <div class="error-message" id="errorMessage" style="display: none;"></div>
 
@@ -59,12 +71,17 @@
                 <div class="conversion-display" id="conversionDisplay">
                     <!-- Dynamically generated conversion process display -->
                 </div>
+                
                 <div class="explanation-panel" id="explanationPanel">
                     <div class="explanation-content" id="explanationContent">
                         <!-- Dynamically generated explanation content -->
                     </div>
                 </div>
             </div>
+            <div class="button-group demo-controls" >
+                    <button id="nextBtn" class="btn btn-secondary" disabled data-i18n="next_button">Next Step</button>
+                    <button id="prevBtn" class="btn btn-secondary" disabled data-i18n="prev_button">Previous</button>
+                </div>
         </div>
     </div>
     

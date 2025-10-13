@@ -48,6 +48,7 @@ class DecimalToFractionDemo {
             this.updateDisplay();
             this.updateButtons();
             this.updateExplanation();
+            this.updateResultSummary();
             
         } catch (error) {
             this.showError(langManager.t('js_conversion_error') + error.message);
@@ -968,6 +969,7 @@ class DecimalToFractionDemo {
         this.updateButtons();
         this.updateExplanation();
         this.hideError();
+        this.resetResultSummary();
     }
 
     showError(message) {
@@ -1279,9 +1281,100 @@ class DecimalToFractionDemo {
         // 其他情况返回原值
         return value.toString();
     }
+
+    /**
+     * 更新“即时结果”展示区
+     */
+    updateResultSummary() {
+        const decimalEl = document.getElementById('dfResultDecimal');
+        const fracSimEl = document.getElementById('dfResultFractionSimplified');
+        const fracRawEl = document.getElementById('dfResultFractionRaw');
+        const typeEl = document.getElementById('dfResultType');
+
+        if (!decimalEl || !fracSimEl || !fracRawEl || !typeEl) return;
+
+        // 原始输入（保留负号）
+        const decimalStr = this.decimal || '';
+        const finalFrac = this.getFinalFractionObject();
+        const rawFrac = this.getRawFractionObject();
+
+        // 类型标签
+        const typeLabel = this.getTypeLabel();
+
+        // 填充值
+        decimalEl.textContent = decimalStr || '—';
+        fracSimEl.textContent = finalFrac ? this.formatFraction(finalFrac) : '—';
+        fracRawEl.textContent = rawFrac ? this.formatFraction(rawFrac) : '—';
+        typeEl.textContent = typeLabel || '—';
+    }
+
+    /**
+     * 清空“即时结果”展示区
+     */
+    resetResultSummary() {
+        const ids = ['dfResultDecimal','dfResultFractionSimplified','dfResultFractionRaw','dfResultType'];
+        ids.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = '—';
+        });
+    }
+
+    /**
+     * 获取原始（未约分）分数对象
+     * - 有限小数：取第一个包含 fraction 的步骤（通常为 analyze）
+     * - 循环小数：取求解步骤（solve），若存在化简则 solve 为未约分
+     */
+    getRawFractionObject() {
+        if (!this.steps || this.steps.length === 0) return null;
+
+        if (this.isRepeatingDecimal()) {
+            // 寻找 solve 步骤
+            for (let i = 0; i < this.steps.length; i++) {
+                const s = this.steps[i];
+                if (s.type === 'solve' && s.fraction) {
+                    return s.fraction;
+                }
+            }
+            // 兜底：第一个 fraction
+            for (let i = 0; i < this.steps.length; i++) {
+                if (this.steps[i].fraction) return this.steps[i].fraction;
+            }
+            return null;
+        } else {
+            // 有限小数：第一个 fraction 即未约分
+            for (let i = 0; i < this.steps.length; i++) {
+                const s = this.steps[i];
+                if (s.fraction) return s.fraction;
+            }
+            return null;
+        }
+    }
+
+    /**
+     * 获取类型标签（多语言）
+     */
+    getTypeLabel() {
+        const clean = (this.decimal || '').replace('-', '');
+        if (this.isRepeatingDecimal()) {
+            return langManager.t('type_repeating') || 'Repeating decimal';
+        }
+        if (clean.includes('.')) {
+            return langManager.t('type_terminating') || 'Terminating decimal';
+        }
+        return langManager.t('type_integer') || 'Integer';
+    }
+
+    /**
+     * 将分数对象格式化为字符串
+     */
+    formatFraction(frac) {
+        if (!frac) return '—';
+        const { numerator, denominator } = frac;
+        return `${numerator}/${denominator}`;
+    }
 }
 
-// 初始化应用
+ // 初始化应用
 document.addEventListener('DOMContentLoaded', () => {
     window.decimalToFractionDemo = new DecimalToFractionDemo();
 });

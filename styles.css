@@ -181,11 +181,11 @@ footer {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
-    margin-right: 40px;
+    margin-right: 20px;
 }
 
 .btn {
-    padding: 10px 20px;
+    padding: 10px 10px;
     border: none;
     border-radius: 6px;
     font-family: 'Courier New', monospace;
@@ -252,6 +252,14 @@ footer {
     gap: 30px;
     justify-content: center;
     align-items: flex-start;
+    position: relative; /* 为浮动按钮提供定位上下文 */
+}
+
+.button-group.demo-controls {
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:16px;
 }
 
 /* 宽屏布局 (桌面端) */
@@ -282,7 +290,19 @@ footer {
         flex: 1;
         width: auto;
         min-width: 300px;
-        margin-right: 20px;
+        margin-right: 50px;
+    }
+
+    /* 演示区域右侧浮动按钮（桌面端） */
+    .step-controls-floating {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        z-index: 5;
+        left:10px;
     }
 }
 
@@ -312,6 +332,17 @@ footer {
     
     .stage {
         padding: 20px;
+    }
+
+    /* 演示区域右侧按钮在移动端回归文档流并右对齐 */
+    .step-controls-floating {
+        position: static;
+        margin: 10px 0;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: flex-end;
+        left: 8px;
     }
 }
 
@@ -646,18 +677,24 @@ a:hover {
 
 /* 小数转分数页面特有样式 */
 .conversion-display {
-    background: transparent;
-    border-radius: 0;
-    padding: 30px;
-    box-shadow: none;
-    border: none;
-    margin-bottom: 20px;
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
     min-height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+/* 浮动按钮基础样式（通用） */
+.step-controls-floating {
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
 .conversion-step {
